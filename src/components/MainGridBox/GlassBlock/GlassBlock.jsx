@@ -6,11 +6,11 @@ export default function GlassBlock(props) {
   return (
     <div className="glassContainer">
       <div className="glassImgContainer">
-        <div
-          className="glassImg"
-          // style={{ backgroundImage: `url(${img})` }}
-        ></div>
-      </div>
+      <div
+        className="glassImg"
+        style={{ backgroundImage: `url(${img})` }}
+      ></div>
+    </div>
 
       <div className="glassInfo">
         <div className="glassTitle">{title}</div>
