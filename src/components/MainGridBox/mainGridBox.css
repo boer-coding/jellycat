@@ -1,0 +1,9 @@
+.mainGrid .mainGridContainer {
+  margin: 0 auto;
+  width: 80%;
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  /* Adjusts columns to fit the screen */
+  gap: 5px;
+}

@@ -1,0 +1,57 @@
+.header {
+  width: 100%;
+}
+
+.header .headerContainer {
+  width: 90%;
+  height: 400px;
+  background-color: #f3f3f3;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.header .headerContainer .headerLeft {
+  width: 45%;
+  height: 300px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.header .headerContainer .headerLeft .headerTitle {
+  font-weight: 400;
+  font-size: 38px;
+  margin-top: 32px;
+  margin-bottom: 10px;
+}
+
+.header .headerContainer .headerLeft .headerTitle .titleBig {
+  font-weight: 700;
+}
+
+.header .headerContainer .headerLeft .headerText {
+  font-size: 14px;
+  height: 48px;
+  margin: 16px 0px;
+}
+
+.header .headerContainer .headerLeft .headerButton {
+  color: white;
+  font-size: 14px;
+  width: 100px;
+  height: 20px;
+  padding: 16px;
+  background: #101010;
+}
+
+.header .headerContainer .headerRight {
+  width: 600px;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-origin: border-box;
+  background-image: url(../../image/banner/banner-girl.png);
+}
