@@ -1,0 +1,44 @@
+.shopGrid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: Tajawal, Helvetica, Arial, sans-serif;
+  color: #1a1a1a;
+  margin-top: 50px;
+
+
+  .shopGridContainer {
+    margin: 0 auto;
+    width: 80%;
+    min-height: 250px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 1.2rem;
+    justify-content: center;
+  }
+.showContainer{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+  .showMore{
+    width: 120px;
+    height: 35px;
+    line-height: 35px;
+    padding: 0px;
+    border: 0px;
+    font-size: 13px;
+    margin: 60px auto;
+    text-align: center;
+    background-color: #33cee5;
+    cursor: pointer;
+    transition: all 0.8s ease;
+    box-sizing: border-box;
+  }
+  .showMore:hover{
+    background-color: #66daeb;
+    border: 1px solid black;
+
+  }
+}

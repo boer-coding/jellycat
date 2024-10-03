@@ -1,0 +1,51 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "974303",
+      "name": "arrow-right",
+      "font_class": "arrowright",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "1368565",
+      "name": "arrow-left",
+      "font_class": "arrow-left",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "1917169",
+      "name": "圆形填充",
+      "font_class": "circle",
+      "unicode": "e816",
+      "unicode_decimal": 59414
+    },
+    {
+      "icon_id": "5387811",
+      "name": "购物袋_o",
+      "font_class": "gouwudai_o",
+      "unicode": "eb60",
+      "unicode_decimal": 60256
+    },
+    {
+      "icon_id": "6403465",
+      "name": "cross",
+      "font_class": "cross",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "11132378",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    }
+  ]
+}

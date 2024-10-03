@@ -3,6 +3,26 @@
 }
 
 body{
-  font-family: Tajawal, Helvetica, Arial, sans-serif;
-  background: #f9f9f9;
+  font-family: Plus Jakarta Sans,sans-serif;
+    background: #f9f9f9;
+    color: #2c2a29;
+  }
+
+  .logoContainer {
+    width: 15%;
+    
+    .logo {
+      margin: 0 auto;
+      width: 65px;
+      height: 65px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-origin: content-box;
+      cursor: pointer;
+    }
+  }
+  .boxContainer{
+    width: 80%;
+    margin: 0 auto;
   }

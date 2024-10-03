@@ -1,0 +1,182 @@
+.cartContainer {
+  width: 600px;
+}
+
+.mainLayOut {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.navBar {
+  width: 100%;
+  height: 100px;
+  background: #f9f9f9;
+  padding: 30px 50px 5px 50px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.navBar .navBarLink {
+  width: 45%;
+  display: flex;
+  align-items: center;
+}
+
+.navBar .navBarLink .navBarLinkContainer {
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: center;
+  opacity: 0.5;
+  text-align: center;
+}
+
+.navBar .navBarLink .navBarLinkContainer .navBarItem {
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  padding: 5px 0px;
+  cursor: pointer;
+}
+
+.navBar .navBarLink .navBarLinkContainer .navBarItem:hover {
+  background-color: #f2f2f2;
+}
+
+.navBar .navBarLink .navBarLinkContainer .active {
+  font-weight: 600;
+}
+
+.navBar .navSearchContainer {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navBar .navSearchContainer .navSearchInput {
+  position: relative;
+  display: flex;
+}
+
+.navBar .navSearchContainer .navSearchInput .navInputBox {
+  font-size: 12px;
+  width: 200px;
+  background: #fff;
+  padding: 12px 16px 12px 48px;
+  opacity: 0.5;
+  border: 0.5px solid;
+  box-sizing: border-box;
+}
+
+.navBar .navSearchContainer .navSearchInput .navInputBox:focus {
+  outline: none;
+  /* Remove the default focus outline */
+}
+
+.navBar .navSearchContainer .navSearchInput .iconSearch {
+  position: absolute;
+  top: 30%;
+  left: 8%;
+  pointer-events: none;
+  /* Ensures the input is still clickable */
+}
+
+.navBar .navSearchContainer .navSearchCart {
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.navBar .navSearchContainer .navSearchCart .displayCart {
+  font-size: 11px;
+  COLOR: WHITE;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  background-color: rgba(220, 9, 9, 0.786);
+  line-height: 18px;
+  text-align: center;
+  border-radius: 50%;
+  top: -18%;
+  right: -12%;
+}
+
+.navBar .navSearchContainer .navSearchCart span {
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  cursor: pointer;
+  line-height: 40px;
+  text-align: center;
+}
+
+.navBar .navSearchContainer .navSearchCart span:hover {
+  background-color: #f2f2f2;
+}
+
+.navBar .navTabContainer {
+  width: 190px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navBar .navTabContainer .navTab {
+  width: 45px;
+  height: 16px;
+  line-height: 16px;
+  padding: 12px 16px;
+}
+
+.navBar .navTabContainer .navTabUp {
+  color: #2c2a29;
+  background-color: #33cee5;
+  margin-right: 12px;
+  text-align: center;
+  transition: all 0.8s ease;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.navBar .navTabContainer .navTabUp:hover {
+  transform: scale(1.03);
+  background-color: rgba(96, 201, 237, 0.5);
+}
+
+.navBar .navTabContainer .navTabIn {
+  text-align: center;
+  background-color: #f2f2f2;
+  transition: all 0.8s ease;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.navBar .navTabContainer .navTabIn:hover {
+  transform: scale(1.03);
+  background-color: #f9f9f9;
+  border: 0.5px solid #33cee5;
+}
+
+.shoppingCart {
+  position: fixed;
+  right: 0;
+  transform: translateX(102%);
+  transition: 1s all ease;
+  z-index: 5;
+}
+
+.footerContainer {
+  width: 100%;
+  height: 186px;
+  margin-top: 48px;
+  padding: 0px 56px;
+  background: #f0f0f0;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+}
