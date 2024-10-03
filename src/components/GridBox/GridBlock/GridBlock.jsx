@@ -27,14 +27,17 @@ export default function GridBlock(props) {
     }, 300);
   };
   const [cartFade, setCartFade] = useState("fadeCart");
-  const handleCartIn = ()=>{
-    setCartFade("")
+  const [cartPrice, setCartPrice] = useState("");
 
-  }
-  const handleCartOut = ()=>{
-    setCartFade("fadeCart")
+  const handleCartIn = () => {
+    setCartFade("");  // Remove fade class
+    setCartPrice("cartPrice");  // Apply price-related class
+  };
 
-  }
+  const handleCartOut = () => {
+    setCartFade("fadeCart");  // Apply fade class
+    setCartPrice("");  // Remove price-related class
+  };
 
   const dispatch = useDispatch();
   const [bgColor, setBgColor] = useState("#33cee5"); // To manage the background color
@@ -49,8 +52,11 @@ export default function GridBlock(props) {
     }, 500);
   };
   return (
-    <div className="productContainer" onMouseLeave={handleCartOut}
-            onMouseEnter={handleCartIn}>
+    <div
+      className="productContainer"
+      onMouseLeave={handleCartOut}
+      onMouseEnter={handleCartIn}
+    >
       <Link
         to={`/products/${id}`}
         style={{ textDecoration: "none", color: "inherit" }}
@@ -71,22 +77,23 @@ export default function GridBlock(props) {
         >
           <div className="toyTitle">{title}</div>
         </Link>
-        <div className="priceCart">
-          <div className="toyPirce">{price}</div>
+        <div className="displayEither">
+        <div className={`toyPirce ${cartPrice}`}>{price}</div>
+        <div
+          className={`addToContainer ${cartFade}`}
+          style={{ backgroundColor: bgColor }}
+        >
           <div
-            className={`addToContainer ${cartFade}`}
-            style={{ backgroundColor: bgColor }}
+            onClick={() => {
+              dispatch(increment());
+              handleChange();
+            }}
           >
-            <div
-              onClick={() => {
-                dispatch(increment());
-                handleChange();
-              }}
-            >
-              {bagMsg}
-            </div>
+            {bagMsg}
           </div>
         </div>
+        </div>
+       
       </div>
     </div>
   );
