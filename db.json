@@ -5,7 +5,11 @@
       "title": "Romi Reindeer",
       "category": "Animal",
       "des": "Romi Reindeer brings sleigh-loads of festive joy. This scrumptious honey deer has huge weighted paws and suedette antlers in rich cocoa tones – not to mention their delicate tufty tail, cranberry nose and waggle ears. A Christmas companion for long drives and post-dinner naps.",
-      "price": 35,
+      "priceList": {
+        "small":35,
+        "medium":40,
+        "large":48
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1597/40341/ROM2R__25419.1724323642.jpg?c=1",
@@ -19,7 +23,11 @@
       "title": "Yummy Penguin",
       "category": "Animal",
       "des": "Yummy Penguin is one excited chick, ready to take that first waddle! Beautifully tousled in blue-grey fur, with a heart-shaped cream face and little flippers, this fluffy chick has a golden beak with matching feet. A welcome-home gift for any new arrival.",
-      "price": 20,
+      "priceList": {
+        "small":20,
+        "medium":25,
+        "large":30
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1606/40406/YUM6PEN__09144.1724341863.jpg?c=1",
@@ -33,7 +41,11 @@
       "title": "Bashful Beige Bunny",
       "category": "Animal",
       "des": "Bashful Beige Bunny is a popular fellow with scrummy-soft Jellycat fur and lovely long flopsy ears mean that with just one cuddle, you’ll never want to let go. Irresistibly cute and a perfect gift for boys or girls. Everyone treasures this little beige bunny.",
-      "price": 28,
+      "priceList": {
+        "small":28,
+        "medium":33,
+        "large":38
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/294/35341/BAS3B__89839.1714752573.jpg?c=1",
@@ -58,7 +70,11 @@
       "title": "Amuseables Bean",
       "category": "Amuseables",
       "des": "Amuseables Bean is full of...more beans! That's how this silly sits up so well! A gingery joy with a goofy grin, this jolly bean is cuddly and keen. The perfect present for vegan pals, or a chef in need of a squidgy assistant! Pop this peppy pulse on the counter as you cook.",
-      "price": 20,
+      "priceList":  {
+        "small":20,
+        "medium":25,
+        "large":30
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/211/34828/A6B__49046.1714752040.jpg?c=1",
@@ -72,7 +88,11 @@
       "title": "Fluffy Seahorse",
       "category": "Animal",
       "des": "Fluffy Seahorse is a tiny marvel, with a punky aqua mane, banana-curve nose, curly tail and mini bobble flippers! Exquisitely detailed and soft for little hands, this seahorse is riding a wave!",
-      "price": 15,
+      "priceList": {
+        "small":15,
+        "medium":23,
+        "large":36
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1462/39802/F6SH__46145.1715963216.jpg?c=1",
@@ -86,7 +106,11 @@
       "title": "Fabulous Fruit Cherry",
       "category": "Amuseables",
       "des": "The bubbly Fabulous Fruit Cherry buddies are stretchy-soft and squidgy in scarlet! These twins share a stalk in cocoa brown and a groovy green leaf with stitchy detail. Fuzzy, friendly and nice as pie!",
-      "price": 14,
+      "priceList": {
+        "small":14,
+        "medium":25,
+        "large":34
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/659/36682/FABF6C__05879.1714753969.jpg?c=1",
@@ -100,7 +124,11 @@
       "title": "Amuseables Happy Boiled Egg",
       "category": "Amuseables",
       "des": "Start your day in a snuggly way with Amuseables Boiled Egg! This breakfast buddy has fluffy white fur, a yummy yellow yolk and a super cute smile. Keep an eye on this scamp with those cordy feet, or you might end up with a runny egg!",
-      "price": 18,
+      "priceList": {
+        "small":18,
+        "medium":25,
+        "large":36
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/114/34831/A6BE__65486.1714752042.jpg?c=1",
@@ -114,7 +142,11 @@
       "title": "Peanut Penguin",
       "category": "Animal",
       "des": "Adorable, snuggly and very, very cosy, let’s welcome the wonderful Peanut Penguin! Vintage-inspired in the baby-softest fur, he’s got icebergs full of cute charisma! Toddlers will love his friendly face and fuzzy flippers. Time to shake a tail feather and slide across the snow!",
-      "price": 28,
+      "priceList": {
+        "small":28,
+        "medium":36,
+        "large":42
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1150/38582/PNM3PN__59702.1714755827.jpg?c=1",
@@ -128,7 +160,11 @@
       "title": "Amuseables Marin Chocolate Milkshake",
       "category": "Amuseables",
       "des": "Amuseables Marin Chocolate Milkshake brings all the cuddles to the diner. This suedette two-tone chocolate milkshake is topped with fluffy cream, stitched sprinkles and a velveteen cherry, with a stitched smile, and cocoa cordy legs.",
-      "price": 35,
+      "priceList": {
+        "small":35,
+        "medium":45,
+        "large":55
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1610/40456/A2MS__32596.1725539410.jpg?c=1",
@@ -142,7 +178,11 @@
       "title": "Amuseables Pickle",
       "category": "Amuseables",
       "des": "Pickles are meant to bring festive good luck, but Amuseables Pickle is a year-round star! Plump and green with embroidered freckles, nutty cord boots and a zingy smile, this gherkin’s quite the quirky gift!",
-      "price": 23,
+      "priceList": {
+        "small":23,
+        "medium":48,
+        "large":62
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/238/34940/A6PIC__56126.1714752157.jpg?c=1",
@@ -156,7 +196,11 @@
       "title": "Amuseables Clementine",
       "category": "Amuseables",
       "des": "Jolly, juicy and perfectly plump, Amuseables Clementine is good for everyone! Ostentatiously orange with textured fur peel and very fine cordy leaves and booties, this smiley citrus has a zing in its step!",
-      "price": 20,
+      "priceList":  {
+        "small":20,
+        "medium":25,
+        "large":30
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/139/34867/A6CLEM__89226.1714752077.jpg?c=1",
@@ -170,12 +214,16 @@
       "title": "Cranberry Octopus",
       "category": "Animal",
       "des": "Do they celebrate holidays under the sea? Ask Cranberry Octopus! This rich red octopus is holiday-ready, with a deep scarlet mantle that's very huggable. Look under those curly, springy arms to find candy-cane stripes in cosy jersey! Imagine the gifts those could give!",
-      "price": 65,
+      "priceList": {
+        "small":55,
+        "medium":65,
+        "large":85
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1589/40310/CRAN2OC__03587.1724323573.jpg?c=1",
           "side": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1589/40311/CRAN2OC_2__99719.1724323574.jpg?c=1",
-          "back": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/301/35352/BAS3BCP_3__97220.1714752586.jpg?c=1"
+          "back": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1589/42939/CRAN2OC_3__55345.1727977533.jpg?c=1"
         }
       }
     },
@@ -185,7 +233,11 @@
       "title": "Bashful Black & Cream Puppy",
       "category": "Animal",
       "des": "Silky-soft and lovingly loyal, Bashful Black & Cream Puppy wants to play all day! His smudgy black patch and sooty tail make him even more adorable!",
-      "price": 28,
+      "priceList": {
+        "small":28,
+        "medium":35,
+        "large":48
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/301/35350/BAS3BCP__33777.1714752585.jpg?c=1",
@@ -199,7 +251,11 @@
       "title": "Persimmon Dragon",
       "category": "Animal",
       "des": "Persimmon Dragon is stretching out so we can admire that vibrant fur! This warm coral dragon is carefully detailed with delicate stitching all over. With indigo wings, ears, spines and tail dart, flopsy paws and a long, weighted tail, Persimmon brightens up any nursery.",
-      "price": 65,
+      "priceList": {
+        "small":55,
+        "medium":65,
+        "large":85
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1470/39829/PERS2DD__32007.1715963388.jpg?c=1",
@@ -213,7 +269,11 @@
       "title": "Smudge Bear",
       "category": "Animal",
       "des": "Smudge Bear is ready to snooze. It's no surprise that this teddy bear gives a great hug, with silky soft fluff in shades of honey,and podgy trumpet paws. This peaceful cub is ready to snuggle up.",
-      "price": 35,
+      "priceList":{
+        "small":35,
+        "medium":48,
+        "large":56
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1287/39103/SMG2B__79421.1714756329.jpg?c=1",
@@ -227,7 +287,11 @@
       "title": "Amuseables Bobble Avocado",
       "category": "Amuseables",
       "des": "Amuseables Bobble Avocado is a kooky pal for frosty days, with a knitted double-bobble hat. This beautifully textured avo has a tufty fur shell in contrasting greens, a smooth green tummy and a chunky suedette stone. Wearing fudge cord boots and a cheery stitch smile, this chunky fruit is a salad icon.",
-      "price": 25,
+      "priceList": {
+        "small":25,
+        "medium":35,
+        "large":45
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1607/40390/A6BA__06747.1724341825.jpg?c=1",
@@ -241,7 +305,11 @@
       "title": "Amuseables Peanut",
       "category": "Amuseables",
       "des": "Amuseables Peanut is one cheeky monkey! With a tumbly-textured soft beige shell, tubby tummy and milk chocolate boots, this lazy legume is happy to hang out. We love that tousled tuft on top! Snuggles, like peanuts, can be very good for you, so we recommend plenty!",
-      "price": 25,
+      "priceList": {
+        "small":25,
+        "medium":35,
+        "large":45
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/237/34937/A6PE__40929.1714752154.jpg?c=1",
@@ -255,7 +323,11 @@
       "title": "Toastie Vivacious Red Eggplant",
       "category": "Amuseables",
       "des": "Toastie Vivacious Eggplant is looking very snuggly indeed, in soft, stretchy purple fur, with a green leaf on top. Wearing fluffy berry earmuffs with a suedette band, this is no frozen veggie! A gift for your quirkiest vegan friend.",
-      "price": 22,
+      "priceList": {
+        "small":32,
+        "medium":42,
+        "large":58
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1601/40387/TOV3AUB__78259.1724341818.jpg?c=1",
@@ -269,7 +341,11 @@
       "title": "Maurice Macaroni Penguin",
       "category": "Animal",
       "des": "Maurice Macaroni is a blue-grey penguin, gorgeously squat with a round cream bib and custard-yellow tufts. With waggly flippers, stitch suedette feet and a down turned piped orange bill, Maurice is suitably serious!",
-      "price": 32,
+      "priceList": {
+        "small":32,
+        "medium":42,
+        "large":58
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1000/37971/MAU3MAC__88558.1714755234.jpg?c=1",
@@ -283,7 +359,11 @@
       "title": "Smudge Hippo",
       "category": "Animal",
       "des": "Smudge Hippo is a smiling sweetie in super soft lilac fur. With dainty ears, stitched nostrils and a curved tail, this lilac lovely has long legs and a squishy tummy. A loving companion, Smudge Hippo is a great gift for any bouncing baby.",
-      "price": 35,
+      "priceList": {
+        "small":35,
+        "medium":40,
+        "large":48
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1290/39990/SMG2H__95230.1720185886.jpg?c=1",
@@ -297,7 +377,11 @@
       "title": "Ooky Bat",
       "category": "Animal",
       "des": "Ooky Bat is just waking up and stretching after hibernation! With a charcoal tummy, two-tone ears and gorgeous scalloped suedette wings, as well as tiny three-toed claws, this bright-eyed bat is about to take flight!",
-      "price": 22,
+      "priceList": {
+        "small":22,
+        "medium":32,
+        "large":48
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/1053/38181/OOK6B__44058.1714755430.jpg?c=1",
@@ -311,7 +395,11 @@
       "title": "Amuseables Pumpkin",
       "category": "Amuseables",
       "des": "Amuseables Pumpkin is lovably plump with ruched stitch segments in terracotta orange. A vibrant veggie with brown cord boots and a jaunty green suedette stalk, this pumpkin rules the patch!",
-      "price": 32,
+      "priceList": {
+        "small":32,
+        "medium":42,
+        "large":58
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/202/34798/A4PUMP__25398.1714752010.jpg?c=1",
@@ -325,7 +413,11 @@
       "title": "Amuseables Bouquet of Flowers",
       "category": "Amuseables",
       "des": "The Amuseables Bouquet of Flowers is the perfect way to say Thank You or Congratulations, or simply to cheer up a friend. A stunning bundle of fluffy blooms, with stitch centers, suedette leaves, petals in pink, cream, purple and yellow, embroidered stems and a hessian wrap, this bunch is blooming gorgeous.",
-      "price": 45,
+      "priceList": {
+        "small":45,
+        "medium":53,
+        "large":60
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/128/34559/A2BFL__95470.1714751765.jpg?c=1",
@@ -339,7 +431,11 @@
       "title": "Amuseables Birthday Cake",
       "category": "Amuseables",
       "des": "Amuseables Birthday Cake is snuggly-scrumptious, with tussly fur so beautifully baked. This party poppet wears a squashy hat of heavenly splodgy buttercream, topped with velvety strawberries and a striped jersey candle. Kick up those cordy boots and let's celebrate!",
-      "price": 32,
+      "priceList": {
+        "small":32,
+        "medium":48,
+        "large":55
+      },
       "pics": {
         "default": {
           "front": "https://cdn11.bigcommerce.com/s-23s5gfmhr7/images/stencil/1000w/products/126/34550/A2BC__78730.1714751758.jpg?c=1",

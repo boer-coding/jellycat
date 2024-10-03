@@ -1,55 +1,52 @@
 .productContainer {
-  width: 80%;
-  height: 350px;
+  width: 100%;
+  height: 380px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   // border: 1px solid #f3f3f3;
-  margin: 0 auto;
-
-  .imgContainer {
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-    background-color: white;
-    display: flex;
-    align-items: center;
-
-
-
-    .toyImg {
-      width: 85%;
-      height: 85%;
-      margin: 0 auto;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      opacity: 1;
-      transition: opacity 0.3s ease-in-out;
-
-    }
-    .fade-out {
-      opacity: 0;
-    }
+.toyImgContainer{
+  width: 100%;
+  height: 80%;
+  // background-color: #a1e1eb;
+  display: flex;
+  align-items: center;
+}
+  .toyImg {
+    width: 80%;
+    height: 85%;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  .fade-out {
+    opacity: 0;
   }
 
   .toyInfo {
     width: 100%;
-    height: 50px;
-    padding: 0px 20px;
+    height: 20%;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
     text-align: center;
     .toyTitle {
       font-size: 12px;
       font-weight: 550;
       width: 100%;
-      height: 20px;
+      height: 10%;
+    }
+    .toyTitle:hover {
+      cursor: pointer;
     }
     .displayEither {
       width: 100%;
+      height: 40%;
+      
     }
     .toyPirce {
       width: 100%;

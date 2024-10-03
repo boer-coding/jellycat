@@ -38,10 +38,8 @@ function Home() {
     if (imgList.current) {
       imgList.current.style.transition = `left ${transitionDuration}ms ease-in-out`;
       // Move to the right if not at the last image
-      if (currentIndex > 0) {
-        setCurrentIndex(currentIndex - 1);
-        imgList.current.style.left = `-${currentIndex - 1}00%`;
-      }
+
+      setCurrentIndex(currentIndex - 1);
 
       // Handle resetting the carousel when reaching the cloned last image
       if (currentIndex === 0) {
@@ -52,20 +50,22 @@ function Home() {
           // Disable the transition to avoid visible jumping
           setCurrentIndex(totalImages - 1);
           imgList.current.style.left = `-${totalImages - 1}00%`;
+
           imgList.current.style.transition = `left ${transitionDuration}ms ease-in-out`;
-        }, 500);
+        }, 0);
+      } else {
+        imgList.current.style.left = `-${currentIndex - 1}00%`;
       }
     }
   };
   // Move right function
   const picRight = () => {
     if (imgList.current) {
-      imgList.current.style.transition = `left ${transitionDuration}ms ease-in-out`;
       // Move to the right if not at the last image
-      if (currentIndex < totalImages) {
-        setCurrentIndex(currentIndex + 1);
-        imgList.current.style.left = `-${currentIndex + 1}00%`;
-      }
+
+      setCurrentIndex(currentIndex + 1);
+      imgList.current.style.left = `-${currentIndex + 1}00%`;
+      imgList.current.style.transition = `left ${transitionDuration}ms ease-in-out`;
 
       // Handle resetting the carousel when reaching the cloned last image
       if (currentIndex === totalImages - 1) {
@@ -188,7 +188,7 @@ function Home() {
                 Born in London. Loved worldwide.
               </div>
               <div
-                onClick={() => {navigate("/explore");}}className="bannerLink">
+                onClick={() => {navigate("/explore")}}className="bannerLink">
                 explore all
               </div>
             </div>
@@ -197,7 +197,7 @@ function Home() {
             <div className="bannerContainer">
               <div className="bannerTitle">Expect the unexpected.</div>
               <div
-                onClick={() => {navigate("/newin");}}className="bannerLink">
+                onClick={() => {navigate("/newin")}}className="bannerLink">
                 NEW IN
               </div>
             </div>
@@ -206,7 +206,7 @@ function Home() {
             <div className="bannerContainer">
               <div className="bannerTitle">Discover Our Most Loved.</div>
               <div
-                onClick={() => {navigate("/bestsellers");}}className="bannerLink">
+                onClick={() => {navigate("/bestsellers")}}className="bannerLink">
                 BEST SELLERs
               </div>
             </div>
@@ -215,7 +215,7 @@ function Home() {
             <div className="bannerContainer">
               <div className="bannerTitle">FOR THE JOY OF IT.</div>
               <div
-                onClick={() => {navigate("/explore");}}className="bannerLink">
+                onClick={() => {navigate("/explore")}}className="bannerLink">
                 explore all
               </div>
             </div>
@@ -224,11 +224,11 @@ function Home() {
         </div>
         <div className="arrow">
           <div>
-            <span className="iconfont icon-arrow-left" onClick={picLeft}></span>
+            <span className="iconfont icon-lunbozuofangun" onClick={picLeft}></span>
           </div>
           <div>
             <span
-              className="iconfont icon-arrowright"
+              className="iconfont icon-lunboyoufangun"
               onClick={picRight}
             ></span>
           </div>

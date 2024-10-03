@@ -1,5 +1,5 @@
 {
-  "name": "salinaka",
+  "name": "jellycat",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,10 +19,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "serve -s build",
-    "server": "json-server --watch db.json --port 4000",
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "heroku-postbuild": "npm run build"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "server": "json-server --watch db.json --port 3010"
+
   },
   "eslintConfig": {
     "extends": [

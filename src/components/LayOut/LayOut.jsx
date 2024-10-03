@@ -6,8 +6,8 @@ import "../../font/iconfont.css";
 import Cart from "./Cart/Cart";
 
 export default function LayOut() {
-  const { count } = useSelector((state) => state.counter);
-  const { logo } = useSelector((state) => state.banner);
+  const { count } = useSelector((state) => state.counterSlice);
+  const { logo } = useSelector((state) => state.bannerSlice);
   const navigate = useNavigate();
 
   const [cartState, setCartState] = useState(false);
@@ -81,7 +81,7 @@ export default function LayOut() {
   return (
     <div className="layOut">
       <div ref={cartRef} className="shoppingCart">
-        <Cart onClose={handleCloseCart} /> {/* Pass the close handler to Cart */}
+        <Cart onClose={handleCloseCart} />{" "}
       </div>
       <div className="cartContainer"></div>
       <div className="mainLayOut">

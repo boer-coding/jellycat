@@ -1,23 +1,19 @@
 .productContainer {
-  width: 80%;
-  height: 350px;
+  width: 100%;
+  height: 380px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin: 0 auto;
 }
 
-.productContainer .imgContainer {
+.productContainer .toyImgContainer {
   width: 100%;
-  height: 300px;
-  overflow: hidden;
-  background-color: white;
+  height: 80%;
   display: flex;
   align-items: center;
 }
 
-.productContainer .imgContainer .toyImg {
-  width: 85%;
+.productContainer .toyImg {
+  width: 80%;
   height: 85%;
   margin: 0 auto;
   background-repeat: no-repeat;
@@ -25,19 +21,19 @@
   background-size: cover;
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
 }
 
-.productContainer .imgContainer .fade-out {
+.productContainer .fade-out {
   opacity: 0;
 }
 
 .productContainer .toyInfo {
   width: 100%;
-  height: 50px;
-  padding: 0px 20px;
+  height: 20%;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: column;
   text-align: center;
 }
@@ -46,11 +42,16 @@
   font-size: 12px;
   font-weight: 550;
   width: 100%;
-  height: 20px;
+  height: 10%;
+}
+
+.productContainer .toyInfo .toyTitle:hover {
+  cursor: pointer;
 }
 
 .productContainer .toyInfo .displayEither {
   width: 100%;
+  height: 40%;
 }
 
 .productContainer .toyInfo .toyPirce {

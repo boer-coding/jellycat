@@ -18,11 +18,11 @@ const productSlice = createSlice({
           title: product.title,
           category: product.category,
           des: product.des,
-          price: product.price,
+          priceList: product.priceList,
           pics: product.pics,
         });
       });
-    },
+    }
   },
   extraReducers: (builder) => {
     builder

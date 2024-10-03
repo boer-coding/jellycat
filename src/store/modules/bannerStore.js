@@ -1,12 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-// const initialState = {
-//   home: null,
-//   animal: null,
-//   amuse: null,
-// };
 
 const { actions, reducer: bannerReducer } = createSlice({
   name: "bannerSlice",

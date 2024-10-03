@@ -7,8 +7,8 @@ import "./exploreItem.css";
 export default function ExploreItem(props) {
   let { id, img, title, category, price } = props;
   const dispatch = useDispatch();
-  const [bgColor, setBgColor] = useState("#33cee5"); // To manage the background color
 
+  const [bgColor, setBgColor] = useState("#33cee5"); // To manage the background color
   const [bagMsg, setBagMsg] = useState("Add to Bag");
   const handleChange = () => {
     setBagMsg("Adding to Bag");
@@ -25,12 +25,12 @@ export default function ExploreItem(props) {
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <div className="itemContainer">
-        <div  className="itemImgContainer">
-        <div
-            className="itemImg"
-            style={{ backgroundImage: `url(${img})` }}
-          ></div>
-        </div>
+          <div className="itemImgContainer">
+            <div
+              className="itemImg"
+              style={{ backgroundImage: `url(${img})` }}
+            ></div>
+          </div>
           <div className="itemInfo">
             <div className="itemTitle">{title}</div>
             <div className="itemCategory">{category}</div>
@@ -41,7 +41,7 @@ export default function ExploreItem(props) {
       <div className="addToContainer" style={{ backgroundColor: bgColor }}>
         <div
           onClick={() => {
-            dispatch(increment());
+            dispatch(increment({id, img, title, price }));
             handleChange();
           }}
         >

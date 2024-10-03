@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 
 function Featured(props) {
   const { header, text } = props;
-  const { newItem, best } = useSelector((state) => state.banner);
-  const bcgImg = header == "NEW IN" ? newItem : best;
+  const { newItem, best } = useSelector((state) => state.bannerSlice);
+  const bcgImg = header === "NEW IN" ? newItem : best;
 
   const {products} = useSelector((state) => state.productSlice);
 

@@ -35,9 +35,9 @@
 
 .grid .gridContent {
   width: 100%;
-  min-height: 350px;
+  min-height: 400px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   /* Adjusts columns to fit the screen */
   grid-gap: 25px;
 }

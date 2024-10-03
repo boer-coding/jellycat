@@ -1,3 +1,0 @@
-http://localhost:3000/
-link to home
-cannot pass in key, only id

@@ -6,9 +6,9 @@ import bannerReducer from "./modules/bannerStore";
 
 const store = configureStore({
     reducer: {
-        counter: counterReducer,  // Add the counter slice to the store
+      counterSlice: counterReducer,  // Add the counter slice to the store
         productSlice: productReducer,
-        banner: bannerReducer,
+        bannerSlice: bannerReducer,
       },
 })
 

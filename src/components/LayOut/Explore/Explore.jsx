@@ -6,11 +6,11 @@ import ExploreItem from "./ExploreItem/ExploreItem";
 import Banner from "../../Banner/Banner";
 import "./explore.css";
 
-export default function Explore(props) {
+export default function Explore() {
   const { category } = useParams();
 
   const [showMore, setShowMore] = useState(false);
-  const { explore } = useSelector((state) => state.banner);
+  const { explore } = useSelector((state) => state.bannerSlice);
 
   const { products } = useSelector((state) => state.productSlice);
 
@@ -58,7 +58,7 @@ export default function Explore(props) {
                 title={item.title}
                 category={item.category}
                 img={item.pics.default.front}
-                price={item.price}
+                price={item.priceList.small}
               />
             ))}
         </div>

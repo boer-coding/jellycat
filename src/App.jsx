@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loadBanner } from "./store/modules/bannerStore.js";
 import { loadProduct } from "./store/modules/productStore.js";
 

@@ -1,49 +1,93 @@
 .toyContainer {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: 50px;
 }
 
 .toyContainer .displayContainer {
   width: 100%;
-  height: 600px;
+  height: 800px;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.02);
-  border: 1px solid #e1e1e1;
 }
 
 .toyContainer .displayContainer .picContainer {
-  width: 45%;
+  width: 100%;
+  /* Full width of the parent container */
+  height: 100%;
+  /* Maintain proportional height */
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
 }
 
 .toyContainer .displayContainer .picContainer .picOuter {
-  width: 100%;
+  display: flex;
+  width: calc(100% * 3);
+  /* Multiply 100% by the number of images */
   height: 100%;
-  overflow: hidden;
-  background-color: white;
+  left: 0;
+  position: relative;
+}
+
+.toyContainer .displayContainer .picContainer .picOuter .picHolder {
+  flex: 1;
+  width: 100%/3;
+  height: 100%;
   display: flex;
   align-items: center;
 }
 
-.toyContainer .displayContainer .picContainer .picOuter .pic {
+.toyContainer .displayContainer .picContainer .picOuter .picHolder .pic {
   margin: 0 auto;
-  width: 80%;
-  height: 80%;
-  transition: all 0.8s ease;
+  width: 70%;
+  height: 75%;
   background-size: cover;
   background-position: center;
+  transition: all 0.8s ease-in-out;
 }
 
-.toyContainer .displayContainer .picContainer:hover .pic {
-  transform: scale(1.05);
+.toyContainer .displayContainer .picContainer .picOuter :hover .pic {
+  transform: scale(1.08);
+}
+
+.toyContainer .displayContainer .picContainer .arrow {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* Space arrows apart */
+  transform: translateY(-50%);
+  /* Vertically center the arrows */
+}
+
+.toyContainer .displayContainer .picContainer .arrow .iconfont {
+  font-size: 40px;
+  font-weight: 600;
+  color: #33cee5;
+  cursor: pointer;
+  /* Add cursor pointer for interactivity */
+}
+
+.toyContainer .displayContainer .picContainer .arrow .icon-lunbozuofangun {
+  margin-left: 30px;
+  /* Optional spacing from edge */
+}
+
+.toyContainer .displayContainer .picContainer .arrow .icon-lunboyoufangun {
+  margin-right: 30px;
+  /* Optional spacing from edge */
 }
 
 .toyContainer .displayContainer .info {
   width: 40%;
+  height: 50%;
   padding: 32px;
   display: flex;
   flex-direction: column;
@@ -73,52 +117,33 @@
   margin-bottom: 30px;
 }
 
-.toyContainer .displayContainer .info #dropdown {
-  width: 400px;
-  padding: 8px 16px;
-  font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid #cccccc;
+.toyContainer .displayContainer .info #styleChoser {
+  display: flex;
+  flex-direction: column;
+}
+
+.toyContainer .displayContainer .info #dropDownText {
+  width: 80%;
+  font-size: 12px;
   color: #333;
-  background-color: white;
-  background-image: none;
+}
+
+.toyContainer .displayContainer .info #dropdown {
+  width: 60%;
+  font-size: 12px;
+  color: #838282;
+  padding: 8px 16px;
+  /* Increased padding for better spacing */
   appearance: none;
   /* Removes default dropdown arrow */
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat right 10px center;
-  background-size: 16px;
-}
-
-.toyContainer .displayContainer .info .color {
-  width: 200px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.toyContainer .displayContainer .info .color .colorCircle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  background-color: white;
+  /* Optional: Ensure background color */
+  background-size: 12px;
+  /* Adjust size of custom arrow */
+  border: 1px solid #ccc;
+  border-radius: 2px;
   cursor: pointer;
-}
-
-.toyContainer .displayContainer .info .color .blue {
-  background-color: #102161;
-}
-
-.toyContainer .displayContainer .info .color .red {
-  background-color: #ac0d0d;
-}
-
-.toyContainer .displayContainer .info .color .green {
-  background-color: #185518;
-}
-
-.toyContainer .displayContainer .info .color .purple {
-  background-color: #721072;
-}
-
-.toyContainer .displayContainer .info .color .brown {
-  background-color: #6d1010;
 }
 
 .toyContainer .displayContainer .info .shopping {

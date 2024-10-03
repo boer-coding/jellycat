@@ -1,0 +1,76 @@
+.cartItemCotainer {
+  width: 100%;
+  height: 120px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cartItemCotainer .changeCount {
+  width: 5%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.cartItemCotainer .changeCount .cartCount {
+  text-align: center;
+}
+
+.cartItemCotainer .changeCount .iconfont {
+  text-align: center;
+  color: #33cee5;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cartItemCotainer .cartImg {
+  width: 20%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.cartItemCotainer .midDisplay {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.cartItemCotainer .midDisplay .cartTitle {
+  width: 100%;
+  height: 20%;
+  font-size: 14px;
+}
+
+.cartItemCotainer .midDisplay .cartSize {
+  width: 100%;
+  height: 20%;
+  font-size: 12px;
+}
+
+.cartItemCotainer .cartPrice {
+  width: 20%;
+}
+
+.cartItemCotainer .cartPrice::before {
+  content: "$ ";
+}
+
+.cartItemCotainer .cartPrice::after {
+  content: ".00";
+}
+
+.cartPrice {
+  width: 20%;
+}
+
+.cartCount {
+  width: 20%;
+}

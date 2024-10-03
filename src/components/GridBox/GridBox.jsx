@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import GridBlock from "./GridBlock/GridBlock";
 import "./gridBox.css";
 import { Link } from "react-router-dom";
@@ -32,7 +32,7 @@ export default function GridBox(props) {
             img={item.pics.default.front}
             title={item.title}
             category={item.category}
-            price={item.price}
+            price={item.priceList.small}
             pics={item.pics}
           />
         ))}

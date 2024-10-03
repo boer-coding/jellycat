@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1727908667135') format('truetype');
+  src: url('iconfont.ttf?t=1727989828209') format('truetype');
 }
 
 .iconfont {
@@ -11,12 +11,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrowright:before {
-  content: "\e656";
+.icon-jiantou-copy-copy:before {
+  content: "\e668";
 }
 
-.icon-arrow-left:before {
-  content: "\e601";
+.icon-jiantou-copy-copy-copy:before {
+  content: "\e669";
+}
+
+.icon-lunboyoufangun:before {
+  content: "\e7b7";
+}
+
+.icon-lunbozuofangun:before {
+  content: "\e7b8";
 }
 
 .icon-circle:before {
