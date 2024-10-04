@@ -8,6 +8,7 @@ import { loadProduct } from "./store/modules/productStore.js";
 // import RouterMessage from './router/RouterMessage/RouterMessage';
 import CentralizedRouter from "./router/CentralizedRouter";
 import ScrollToTop from "./components/ScrollTop/ScrollTop";
+import db from '../db.json'
 function App() {
   // First Mount: When the App component is mounted for the first time, the useEffect runs and triggers the API calls (dispatches loadBanner and loadProduct).
 
@@ -18,9 +19,28 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
-    dispatch(loadBanner(`${apiUrl}/banner`));
-    dispatch(loadProduct(`${apiUrl}/products`));
+    if (process.env.NODE_ENV === "development") {
+      // Fetch from local server in development
+      axios.get("http://localhost:5000/banner")
+        .then((response) => {
+          dispatch(loadBanner(response.data));
+        })
+        .catch((error) => {
+          console.error("Error fetching banner data from server:", error);
+        });
+
+      axios.get("http://localhost:5000/products")
+        .then((response) => {
+          dispatch(loadProduct(response.data));
+        })
+        .catch((error) => {
+          console.error("Error fetching products data from server:", error);
+        });
+    } else {
+      // Use local db.json data in production
+      dispatch(loadBanner(db.banner));
+      dispatch(loadProduct(db.products));
+    }
   }, [dispatch]);
 
   return (
