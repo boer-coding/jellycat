@@ -161,6 +161,18 @@
   border: 0.5px solid #33cee5;
 }
 
+.darken {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  transition: 1s all ease;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(61, 65, 86, 0.35);
+  background-blend-mode: darken;
+}
+
 .shoppingCart {
   position: fixed;
   right: 0;

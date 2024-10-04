@@ -9,7 +9,6 @@ export const loadBanner = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(apiUrl);
-      console.log(response.data.banner[0]);
       return response.data.banner[0]; // Directly return the banner data from db.json
     } catch (error) {
       throw Error("Failed to load banners");

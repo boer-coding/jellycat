@@ -12,11 +12,17 @@ export default function LayOut() {
 
   const [cartState, setCartState] = useState(false);
   const cartRef = useRef(null); // Ref to detect clicks outside the cart
+  const darken = useRef(null);
 
   // Function to open cart (slide it into view)
   const handleCart = () => {
-    if (cartRef.current) {
+    if (cartRef.current && darken.current) {
+      console.log(darken.current.style);
+
       cartRef.current.style.transform = "translateX(0px)"; // Slide cart into view
+      darken.current.style.visibility = "visible";
+
+      darken.current.style.opacity = "1";
     }
     setCartState(true);
   };
@@ -25,6 +31,9 @@ export default function LayOut() {
   const handleCloseCart = () => {
     if (cartRef.current) {
       cartRef.current.style.transform = "translateX(100%)"; // Slide the cart out of view
+      darken.current.style.visibility = "hidden";
+
+      darken.current.style.opacity = "0";
     }
     setCartState(false);
   };
@@ -83,6 +92,8 @@ export default function LayOut() {
       <div ref={cartRef} className="shoppingCart">
         <Cart onClose={handleCloseCart} />{" "}
       </div>
+      <div className="darken" ref={darken}></div>
+
       <div className="cartContainer"></div>
       <div className="mainLayOut">
         <div className="navBar">
