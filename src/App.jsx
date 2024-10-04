@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
 
-    // dispatch(loadBanner(`${jsonUrl}`));
+    dispatch(loadBanner());
     dispatch(loadProduct());
   }, [dispatch]);
 
