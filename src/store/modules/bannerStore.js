@@ -1,9 +1,21 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { createSlice } from "@reduxjs/toolkit";
-
 
 const apiUrl = "https://raw.githubusercontent.com/boer-coding/jellycat-json/main/db.json";
+
+// Thunk for loading banner data
+export const loadBanner = createAsyncThunk(
+  "bannerSlice/loadBanner",
+  async () => {
+    try {
+      const response = await axios.get(apiUrl);
+      console.log(response.data.banner[0]);
+      return response.data.banner[0]; // Directly return the banner data from db.json
+    } catch (error) {
+      throw Error("Failed to load banners");
+    }
+  }
+);
 
 // Banner Slice
 const bannerSlice = createSlice({
@@ -14,30 +26,30 @@ const bannerSlice = createSlice({
     newItem: null,
     best: null,
     explore: null,
+    loading: false, // To handle loading state
+    error: null, // To handle errors
   },
-  reducers: {
-    setBanner(state, action) {
-      state.logo = action.payload.logo;
-      state.home = action.payload.home;
-      state.newItem = action.payload.newItem;
-      state.best = action.payload.best;
-      state.explore = action.payload.explore;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(loadBanner.pending, (state) => {
+        state.loading = true;  // Set loading to true when fetching starts
+        state.error = null;    // Clear previous errors
+      })
+      .addCase(loadBanner.fulfilled, (state, action) => {
+        state.logo = action.payload.logo;
+        state.home = action.payload.home;
+        state.newItem = action.payload.newItem;
+        state.best = action.payload.best;
+        state.explore = action.payload.explore;
+        state.loading = false;  // Set loading to false when fetching is complete
+      })
+      .addCase(loadBanner.rejected, (state, action) => {
+        state.loading = false;  // Set loading to false on failure
+        state.error = action.error.message;  // Capture error message
+      });
   },
 });
 
-// Thunk for loading banner data
-export const loadBanner = createAsyncThunk(
-  "bannerSlice/loadBanner",
-  async () => {
-    try {
-      const response = await axios.get(apiUrl);
-      return response.data.banner[0];  // Directly return the banner data from db.json
-    } catch (error) {
-      throw Error("Failed to load banners");
-    }
-  }
-);
-
-export const { setBanner } = bannerSlice.actions;
 export default bannerSlice.reducer;
+
