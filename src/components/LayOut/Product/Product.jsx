@@ -78,8 +78,9 @@ export default function Product() {
 
   // Fetch the product list if not already loaded
   useEffect(() => {
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
     if (products.length === 0 && !loading) {
-      dispatch(loadProduct("https://jellycat-13a0e50aa841.herokuapp.com/products"));
+      dispatch(loadProduct(`${apiUrl}/products`));
     }
   }, [dispatch, products, loading]);
 

@@ -18,8 +18,9 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadBanner("https://jellycat-13a0e50aa841.herokuapp.com/banner"));
-    dispatch(loadProduct("https://jellycat-13a0e50aa841.herokuapp.com/products"));
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    dispatch(loadBanner(`${apiUrl}/banner`));
+    dispatch(loadProduct(`${apiUrl}/products`));
   }, [dispatch]);
 
   return (
