@@ -18,10 +18,9 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const jsonUrl = "https://raw.githubusercontent.com/boer-coding/jellycat-json/main/db.json"; // URL for db.json hosted on GitHub
 
-    dispatch(loadBanner(`${jsonUrl}/banner`));
-    dispatch(loadProduct(`${jsonUrl}/products`));
+    // dispatch(loadBanner(`${jsonUrl}`));
+    dispatch(loadProduct());
   }, [dispatch]);
 
   return (

@@ -2,44 +2,36 @@ import { createAsyncThunk, createSlice, nanoid } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // Create the slice
+// Create the product slice
 const productSlice = createSlice({
   name: "productSlice",
   initialState: {
     products: [],
-    loading: false,  // Set default loading state to false
-    error: null,     // Track any errors during the request
+    loading: false,  // Loading state
+    error: null,     // Error state
   },
   reducers: {
-    // Reducer to add multiple products to the state
+    // Reducer to manually add multiple products to the state
     addProducts(state, action) {
-      action.payload.forEach((product) => {
-        state.push({
-          id: product.id || nanoid(), // Generate id if not provided
-          title: product.title,
-          category: product.category,
-          des: product.des,
-          priceList: product.priceList,
-          pics: product.pics,
-        });
-      });
-    }
+      state.products = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
-      // Handle the pending state
+      // Handle pending state
       .addCase(loadProduct.pending, (state) => {
-        state.loading = true;  // Set loading to true when the request starts
-        state.error = null;    // Reset any previous error state
+        state.loading = true;
+        state.error = null;
       })
-      // Handle the fulfilled state
+      // Handle fulfilled state when products are successfully fetched
       .addCase(loadProduct.fulfilled, (state, action) => {
-        state.products = action.payload;  // Populate products with the fetched data
-        state.loading = false;  // Set loading to false when the data is successfully fetched
+        state.products = action.payload;  // Store the fetched products in state
+        state.loading = false;  // Set loading to false
       })
-      // Handle the rejected state (error)
+      // Handle rejected state when the API call fails
       .addCase(loadProduct.rejected, (state, action) => {
-        state.loading = false;  // Set loading to false if the request fails
-        state.error = action.error.message;  // Set the error message in case of failure
+        state.loading = false;  // Set loading to false
+        state.error = action.error.message;  // Store the error message
       });
   }
 });
@@ -48,9 +40,10 @@ const productSlice = createSlice({
 // Thunk to load products from API
 export const loadProduct = createAsyncThunk(
   "productSlice/loadProduct",
-  async (apiUrl) => {
+  async () => {
+    const apiUrl = "https://raw.githubusercontent.com/boer-coding/jellycat-json/main/db.json";
     const response = await axios.get(apiUrl);
-    return response.data;  // Return the data for Redux to handle in extraReducers
+    return response.data.products;  // Ensure you return the products array
   }
 );
 

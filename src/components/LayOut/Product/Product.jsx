@@ -80,8 +80,7 @@ export default function Product() {
   useEffect(() => {
 
     if (products.length === 0 && !loading) {
-      const jsonUrl = "https://raw.githubusercontent.com/boer-coding/jellycat-json/main/db.json"; // URL for db.json hosted on GitHub
-      dispatch(loadProduct(`${jsonUrl}/products`));
+      dispatch(loadProduct());
     }
   }, [dispatch, products, loading]);
 
