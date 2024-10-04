@@ -78,9 +78,10 @@ export default function Product() {
 
   // Fetch the product list if not already loaded
   useEffect(() => {
-    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
     if (products.length === 0 && !loading) {
-      dispatch(loadProduct(`${apiUrl}/products`));
+      const jsonUrl = "https://raw.githubusercontent.com/boer-coding/jellycat-json/main/db.json"; // URL for db.json hosted on GitHub
+      dispatch(loadProduct(`${jsonUrl}/products`));
     }
   }, [dispatch, products, loading]);
 
