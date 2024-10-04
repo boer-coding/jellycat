@@ -18,8 +18,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadBanner("http://localhost:3010/banner"));
-    dispatch(loadProduct("http://localhost:3010/products"));
+    dispatch(loadBanner("https://jellycat-13a0e50aa841.herokuapp.com/banner"));
+    dispatch(loadProduct("https://jellycat-13a0e50aa841.herokuapp.com/products"));
   }, [dispatch]);
 
   return (

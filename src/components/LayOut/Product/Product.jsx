@@ -79,7 +79,7 @@ export default function Product() {
   // Fetch the product list if not already loaded
   useEffect(() => {
     if (products.length === 0 && !loading) {
-      dispatch(loadProduct("http://localhost:3010/products"));
+      dispatch(loadProduct("https://jellycat-13a0e50aa841.herokuapp.com/products"));
     }
   }, [dispatch, products, loading]);
 
