@@ -147,7 +147,9 @@ export default function LayOut() {
             <div className="navTab navTabIn">Sign Up</div>
           </div>
         </div>
+        <div className="mid">
         <Outlet />
+        </div>
         <div className="footerContainer">
           <div className="logoContainer" onClick={goHome}>
             <div

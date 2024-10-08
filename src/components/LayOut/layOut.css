@@ -1,11 +1,20 @@
+.layOut {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Ensure that the layout takes up the full viewport height */
+}
+
 .cartContainer {
   width: 600px;
 }
 
 .mainLayOut {
-  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .navBar {
@@ -183,7 +192,7 @@
 
 .footerContainer {
   width: 100%;
-  height: 186px;
+  height: 200px;
   margin-top: 48px;
   padding: 0px 56px;
   background: #f0f0f0;

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const apiUrl = "https://boer-coding.github.io/boer-coding/data/db.json";
+const apiUrl = "https://boer-coding.github.io/boer-coding/data/jellycat/db.json";
 
 // Thunk for loading banner data
 export const loadBanner = createAsyncThunk(

@@ -41,7 +41,7 @@ const productSlice = createSlice({
 export const loadProduct = createAsyncThunk(
   "productSlice/loadProduct",
   async () => {
-    const apiUrl = "https://boer-coding.github.io/boer-coding/data/db.json";
+    const apiUrl = "https://boer-coding.github.io/boer-coding/data/jellycat/db.json";
     const response = await axios.get(apiUrl);
     return response.data.products;  // Ensure you return the products array
   }

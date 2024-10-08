@@ -4,13 +4,8 @@ import { useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import banner1 from "../../../img/banner1.webp";
-import banner2 from "../../../img/banner2.jpg";
-import banner3 from "../../../img/banner3.jpg";
-import banner4 from "../../../img/banner4.jpeg";
-
 function Home() {
-  // const { home } = useSelector((state) => state.banner);
+  const { home } = useSelector((state) => state.bannerSlice);
   const navigate = useNavigate();
 
   const { products } = useSelector((state) => state.productSlice);
@@ -108,79 +103,79 @@ function Home() {
 
   return (
     <div className="home">
-            {/* {home ? (
-             <div className="wrap">
-             <div className="imgList" ref={imgList}>
-               <div className="img" style={{ backgroundImage: `url(${home.home1})` }}>
-                 <div className="bannerContainer">
-                   <div className="bannerTitle">
-                     Born in London. Loved worldwide.
-                   </div>
-                   <div
-                     onClick={() => {navigate("/explore");}}className="bannerLink">
-                     explore all
-                   </div>
-                 </div>
-               </div>
-               <div className="img" style={{ backgroundImage: `url(${home.home2})` }}>
-                 <div className="bannerContainer">
-                   <div className="bannerTitle">Expect the unexpected.</div>
-                   <div
-                     onClick={() => {navigate("/newin");}}className="bannerLink">
-                     NEW IN
-                   </div>
-                 </div>
-               </div>
-               <div className="img" style={{ backgroundImage: `url(${home.home3})` }}>
-                 <div className="bannerContainer">
-                   <div className="bannerTitle">Discover Our Most Loved.</div>
-                   <div
-                     onClick={() => {navigate("/bestsellers");}}className="bannerLink">
-                     BEST SELLERs
-                   </div>
-                 </div>
-               </div>
-               <div className="img" style={{ backgroundImage: `url(${home.home4})` }}>
-                 <div className="bannerContainer">
-                   <div className="bannerTitle">FOR THE JOY OF IT.</div>
-                   <div
-                     onClick={() => {navigate("/explore");}}className="bannerLink">
-                     explore all
-                   </div>
-                 </div>
-               </div>
-         
-             </div>
-             <div className="arrow">
-               <div>
-                 <span className="iconfont icon-arrow-left" onClick={picLeft}></span>
-               </div>
-               <div>
-                 <span
-                   className="iconfont icon-arrowright"
-                   onClick={picRight}
-                 ></span>
-               </div>
-             </div>
-             <ul className="circleList" ref={circleList}>
-               <li className="circle" onClick={() => goToImage(0)}>
-                 <span className="iconfont icon-circle"></span>
-               </li>
-               <li className="circle" onClick={() => goToImage(1)}>
-                 <span className="iconfont icon-circle"></span>
-               </li>
-               <li className="circle" onClick={() => goToImage(2)}>
-                 <span className="iconfont icon-circle"></span>
-               </li>
-               <li className="circle" onClick={() => goToImage(3)}>
-                 <span className="iconfont icon-circle"></span>
-               </li>
-             </ul>
-           </div>
+            {home ? (
+            <div className="wrap">
+            <div className="imgList" ref={imgList}>
+              <div className="img" style={{ backgroundImage: `url(${home.home1})` }}>
+                <div className="bannerContainer">
+                  <div className="bannerTitle">
+                    Born in London. Loved worldwide.
+                  </div>
+                  <div
+                    onClick={() => {navigate("/explore")}}className="bannerLink">
+                    explore all
+                  </div>
+                </div>
+              </div>
+              <div className="img" style={{ backgroundImage: `url(${home.home2})` }}>
+                <div className="bannerContainer">
+                  <div className="bannerTitle">Expect the unexpected.</div>
+                  <div
+                    onClick={() => {navigate("/newin")}}className="bannerLink">
+                    NEW IN
+                  </div>
+                </div>
+              </div>
+              <div className="img" style={{ backgroundImage: `url(${home.home3})` }}>
+                <div className="bannerContainer">
+                  <div className="bannerTitle">Discover Our Most Loved.</div>
+                  <div
+                    onClick={() => {navigate("/bestsellers")}}className="bannerLink">
+                    BEST SELLERs
+                  </div>
+                </div>
+              </div>
+              <div className="img" style={{ backgroundImage: `url(${home.home4})` }}>
+                <div className="bannerContainer">
+                  <div className="bannerTitle">FOR THE JOY OF IT.</div>
+                  <div
+                    onClick={() => {navigate("/explore")}}className="bannerLink">
+                    explore all
+                  </div>
+                </div>
+              </div>
+        
+            </div>
+            <div className="arrow">
+              <div>
+                <span className="iconfont icon-lunbozuofangun" onClick={picLeft}></span>
+              </div>
+              <div>
+                <span
+                  className="iconfont icon-lunboyoufangun"
+                  onClick={picRight}
+                ></span>
+              </div>
+            </div>
+            <ul className="circleList" ref={circleList}>
+              <li className="circle" onClick={() => goToImage(0)}>
+                <span className="iconfont icon-circle"></span>
+              </li>
+              <li className="circle" onClick={() => goToImage(1)}>
+                <span className="iconfont icon-circle"></span>
+              </li>
+              <li className="circle" onClick={() => goToImage(2)}>
+                <span className="iconfont icon-circle"></span>
+              </li>
+              <li className="circle" onClick={() => goToImage(3)}>
+                <span className="iconfont icon-circle"></span>
+              </li>
+            </ul>
+          </div>
           ) : (
             <p>Loading...</p>
-          )} */}
-      <div className="wrap">
+          )}
+      {/* <div className="wrap">
         <div className="imgList" ref={imgList}>
           <div className="img" style={{ backgroundImage: `url(${banner1})` }}>
             <div className="bannerContainer">
@@ -247,7 +242,7 @@ function Home() {
             <span className="iconfont icon-circle"></span>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div className="homeProducts">
         <GridBox
           gridTitle="NEW IN"
