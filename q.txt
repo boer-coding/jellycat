@@ -1,2 +1,4 @@
 1. cart number not in middle
 2. cart second page
+3. search
+4. lazy load
