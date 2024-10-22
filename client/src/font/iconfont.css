@@ -43,3 +43,7 @@
   content: "\e657";
 }
 
+.icon-custom-user:before {
+  content: "\e632";
+}
+

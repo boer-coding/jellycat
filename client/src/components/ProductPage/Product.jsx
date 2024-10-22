@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { increment } from "../../store/modules/counterStore";
-import GridBox from "../Shared/GridBox/GridBox";
 import "./product.css";
+import axios from "axios";
 
 export default function Product() {
   const { id } = useParams(); // Get the product id from the URL params
@@ -69,22 +69,45 @@ export default function Product() {
       }
     }
   };
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Access products, loading, and error from the Redux store
-  const { products} = useSelector(
-    (state) => state.productSlice
-  );
+  useEffect(()=>{
+    const fetchProduct = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`https://jellycat-backend-14f22f6178c9.herokuapp.com/products/${id}`);
+        setProduct(response.data);
+      } catch (err) {
+        setError("Failed to fetch product");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id])
 
 
-  const itemId = parseInt(id, 10); // Convert the id to a number
-  const item = products.find((product) => product.id === itemId);
+  // Handle loading state
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  if (!item) {
-    console.log("Products:", products);
-    console.log("URL ID:", itemId);
+  // Handle error state
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  // Handle product not found
+  if (!product) {
     return <div>Product not found</div>;
   }
-  const { title, category, des, priceList, pics } = item; // Destructure item properties
+
+  // Destructure product properties
+  const { title, category, des, priceList, pics } = product;
 
   // Function to handle dropdown change
   const handleSizeChange = (event) => {
@@ -187,14 +210,14 @@ export default function Product() {
         </div>
       </div>
 
-      <div className="bestContainer">
+      {/* <div className="bestContainer">
         <GridBox
           gridTitle="Best Sellers"
           gridLink="/bestsellers"
           isShow={true}
-          gridBox={products}
+          gridBox={product}
         />
-      </div>
+      </div> */}
     </div>
   );
 }

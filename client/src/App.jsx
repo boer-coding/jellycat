@@ -2,8 +2,6 @@ import "./App.css";
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { loadProduct } from "./store/modules/productStore.js";
 import CentralizedRouter from "./router/CentralizedRouter";
 import ScrollToTop from "./components/Shared/ScrollTop/ScrollTop.jsx";
 
@@ -22,7 +20,7 @@ function App() {
   useEffect(() => {
     const fetchBannerData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/banners');
+        const response = await axios.get('https://jellycat-backend-14f22f6178c9.herokuapp.com/banners');
         console.log("Banner data fetched:", response.data);
         setBannerData(response.data[0]);
         setLoadingBanner(false);
@@ -36,23 +34,13 @@ function App() {
     fetchBannerData();
   }, []); 
 
-  const dispatch = useDispatch();
-  const productLoading = useSelector((state) => state.productSlice.loading);
-
-  const loading = productLoading || loadingBanner;
-
-  useEffect(() => {
-    console.log("banner");
-    dispatch(loadProduct());
-  }, [dispatch]);
-
-  console.log("loading ", loading);
+  console.log("loading ", loadingBanner);
 
   return (
     <div>
       <BrowserRouter>
         <ScrollToTop>
-          {!loading ? (
+          {!loadingBanner ? (
             <BannerContext.Provider value={{ bannerData}}>
               <CentralizedRouter /> {/* Show the CentralizedRouter when loading is done */}
             </BannerContext.Provider>

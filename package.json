@@ -4,18 +4,21 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm start --prefix client\" \"npm start --prefix server\"",   
-    "install-client": "npm install --prefix client",  
-    "install-server": "npm install --prefix server",  
-    "build-client": "npm run build --prefix client",  
-    "build-server": "npm run build --prefix server",   
-    "test": "echo \"Error: no test specified\" && exit 1"  
+    "start": "concurrently \"npm start --prefix client\" \"npm start --prefix server\"",
+    "install-client": "npm install --prefix client",
+    "install-server": "npm install --prefix server",
+    "build-client": "npm run build --prefix client",
+    "build-server": "npm run build --prefix server",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Boer",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^9.0.1",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0"
   }
 }

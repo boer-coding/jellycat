@@ -41,7 +41,7 @@ export default function ExploreItem(props) {
       <div className="addToContainer" style={{ backgroundColor: bgColor }}>
         <div
           onClick={() => {
-            dispatch(increment({id, img, title, price }));
+            dispatch(increment({ id, img, title, price }));
             handleChange();
           }}
         >

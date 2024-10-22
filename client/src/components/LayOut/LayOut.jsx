@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router";
+import { useBanner } from "../../App.jsx";
+import Cart from "../Shared/Cart/Cart.jsx";
+
 import "./layOut.css";
 import "../../font/iconfont.css";
-import Cart from "../Shared/Cart/Cart.jsx";
-// import { useBanner } from "../Shared/Context/BannerContext.jsx";
-import { useBanner } from "../../App.jsx";
+import "../../font2/iconfont.css";
 
 
 
@@ -80,6 +81,10 @@ export default function LayOut() {
     navigate("/bestsellers");
   };
 
+  let logIn = () =>{
+    navigate("/login");
+  }
+
   const [type, setType] = useState("");
 
   let handleChange = (type) => {
@@ -99,7 +104,7 @@ export default function LayOut() {
       </div>
       <div className="darken" ref={darken}></div>
 
-      <div className="cartContainer"></div>
+      {/* <div className="cartContainer"></div> */}
       <div className="mainLayOut">
         <div className="navBar">
           <div
@@ -142,18 +147,19 @@ export default function LayOut() {
                 <span className="iconfont icon-search"></span>
               </div>
             </div>
-            <div className="navSearchCart" onClick={handleCart}>
+          </div>
+          <div className="navTabContainer">
+            <div className="navIcon navLog">
+              <span className="iconfont icon-custom-user" onClick={logIn}></span>
+            </div>
+            <div className="navIcon navCart" onClick={handleCart}>
               <span className="iconfont icon-gouwudai_o"></span>
               {count !== 0 && <div className="displayCart">{count}</div>}
             </div>
           </div>
-          <div className="navTabContainer">
-            <div className="navTab navTabUp">Log In</div>
-            <div className="navTab navTabIn">Sign Up</div>
-          </div>
         </div>
         <div className="mid">
-        <Outlet />
+          <Outlet />
         </div>
         <div className="footerContainer">
           <div className="logoContainer" onClick={goHome}>

@@ -6,6 +6,7 @@ import Home from "../components/HomePage/Home.jsx";
 import Explore from "../components/ExplorePage/Explore.jsx";
 import BestNew from "../components/BestNewPage/BestNew.jsx";
 import Product from "../components/ProductPage/Product.jsx";
+import Login from "../components/LoginPage/Login.jsx";
 
 const routerList = [
   {
@@ -42,6 +43,13 @@ const routerList = [
 
             header="Best Sellers"
             text="As chosen by you, these are the all-time favorite friends for all occasions."
+          />
+        ),
+      },
+      {
+        path: "/login",
+        element: (
+          <Login
           />
         ),
       },

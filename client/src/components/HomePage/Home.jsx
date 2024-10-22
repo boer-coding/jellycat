@@ -1,9 +1,7 @@
 import "./home.css";
 import GridBox from "../Shared/GridBox/GridBox";
-import { useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-// import { useBanner } from '../Shared/Context/BannerContext.jsx'; // Adjust the path based on where App is located
 import { useBanner } from "../../App.jsx";
 
 
@@ -12,7 +10,6 @@ function Home() {
   const { bannerData } = useBanner(); // Access banner data from context
   const navigate = useNavigate();
 
-  const { products } = useSelector((state) => state.productSlice);
   const imgList = useRef(null);
   const circleList = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -182,7 +179,6 @@ function Home() {
           gridTitle="NEW IN"
           gridLink="/newin"
           isShow={true}
-          gridBox={products}
         />
       </div>
       <div className="homeProducts">
@@ -190,7 +186,6 @@ function Home() {
           gridTitle="BEST SELLERS"
           gridLink="/bestsellers"
           isShow={true}
-          gridBox={products}
         />
       </div>
     </div>
