@@ -1,6 +1,7 @@
 .cart {
   height: 100vh;
-  width: 600px;
+  width: 500px;
+  padding: 25px;
   background-color: white;
   box-shadow: -1px -1px 2px #f0efef;
   transition: all 1s ease;
@@ -44,8 +45,8 @@
   cursor: pointer;
 }
 
-.cartContainer .cartTitle .icon-cross {
-  font-size: 20px;
+.cartContainer .cartTitle .icon-chacha {
+  font-size: 25px;
 }
 
 .cartContainer .cartContent {
@@ -89,4 +90,9 @@
 
 .cartContainer .cartBottom:hover .checkOut {
   transform: scale(1.02);
+}
+
+.paginationContainer {
+  margin: 0 auto;
+  margin-bottom: 20px;
 }

@@ -1,15 +1,31 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { increment } from "../../../store/modules/counterStore";
+import { addToCart } from "../../../helpers/syncCart";
 import "./exploreItem.css";
 
 export default function ExploreItem(props) {
+  const size = "small";
+
   let { id, img, title, category, price } = props;
   const dispatch = useDispatch();
 
   const [bgColor, setBgColor] = useState("#33cee5"); // To manage the background color
   const [bagMsg, setBagMsg] = useState("Add to Bag");
+
+  const handleAddToCart = () => {
+    // Prepare the item object with necessary properties
+    const item = {
+      id,
+      img,
+      title,
+      price,
+      size,
+    };
+
+    // Dispatch the addToCart action with the item
+    dispatch(addToCart(item));
+  };
   const handleChange = () => {
     setBagMsg("Adding to Bag");
     setBgColor("lightgray");
@@ -41,7 +57,7 @@ export default function ExploreItem(props) {
       <div className="addToContainer" style={{ backgroundColor: bgColor }}>
         <div
           onClick={() => {
-            dispatch(increment({ id, img, title, price }));
+            handleAddToCart();
             handleChange();
           }}
         >

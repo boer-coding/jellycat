@@ -87,6 +87,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  position: relative;
 }
 
 .navBar .navSearchContainer .navSearchInput {
@@ -109,12 +110,21 @@
   /* Remove the default focus outline */
 }
 
-.navBar .navSearchContainer .navSearchInput .iconSearch {
+.navBar .navSearchContainer .navSearchInput .icon-sousuo {
   position: absolute;
   top: 30%;
   left: 8%;
   pointer-events: none;
   /* Ensures the input is still clickable */
+}
+
+.navBar .navSearchContainer .searchDisplay {
+  position: absolute;
+  width: 200px;
+  background-color: white;
+  top: 60px;
+  left: 90px;
+  z-index: 5;
 }
 
 .navBar .navTabContainer {
@@ -130,6 +140,23 @@
   text-align: center;
   line-height: 40px;
   cursor: pointer;
+  position: relative;
+}
+
+.navBar .navTabContainer .navIcon .logBox {
+  visibility: hidden;
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 10px;
+  text-align: center;
+  background-color: #33cee5;
+  transition: all 0.8s ease;
+}
+
+.navBar .navTabContainer .navIcon:hover .logBox {
+  visibility: visible;
 }
 
 .navBar .navTabContainer .navCart {

@@ -2,9 +2,8 @@ import React from "react";
 import "./gridBlock.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { increment } from "../../../../store/modules/counterStore";
 import { useNavigate } from "react-router";
-
+import { addToCart } from "../../../../helpers/syncCart";
 export default function GridBlock(props) {
   let { id, img, title, price, pics } = props;
   const size = "small";
@@ -43,7 +42,6 @@ export default function GridBlock(props) {
   };
 
   const [bgColor, setBgColor] = useState("#33cee5"); // To manage the background color
-
   const [bagMsg, setBagMsg] = useState("Add to Bag");
   const handleChange = () => {
     setBagMsg("Adding to Bag");
@@ -53,6 +51,20 @@ export default function GridBlock(props) {
       setBgColor("#33cee5");
     }, 500);
   };
+  const handleAddToCart = () => {
+    // Prepare the item object with necessary properties
+    const item = {
+      id,
+      img,
+      title,
+      price,
+      size,
+    };
+
+    // Dispatch the addToCart action with the item
+    dispatch(addToCart(item));
+  };
+
   return (
     <div
       className="productContainer"
@@ -89,7 +101,7 @@ export default function GridBlock(props) {
           >
             <div
               onClick={() => {
-                dispatch(increment({ id, img, title, price, size }));
+                handleAddToCart();
                 handleChange();
               }}
             >

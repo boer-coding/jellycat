@@ -1,38 +1,57 @@
-import {
-  increment,
-  decrement
-} from "../../../../store/modules/counterStore";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-
-import "./cartItem.css";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { addToCart, removeCart } from "../../../../helpers/syncCart";
+import "./cartItem.css";
 
 export default function CartItem(props) {
-  const { id , size} = props;
+  const { id, img, price, size, title, cost, count } = props;
 
-  const { cartList } = useSelector((state) => state.counterSlice);
-  const listItem = cartList.find((item) => item.id === id && item.size === size);
-  const { img, title, count, price, totalPrice } = listItem;
   const dispatch = useDispatch();
+  const handleAddToCart = () => {
+    // Prepare the item object with necessary properties
+    const item = {
+      id,
+      img,
+      title,
+      price,
+      size,
+    };
 
+    // Dispatch the addToCart action with the item
+    dispatch(addToCart(item));
+  };
+
+  const handleRemoveCart = () => {
+    // Prepare the item object with necessary properties
+    const item = {
+      id,
+      img,
+      title,
+      price,
+      size,
+    };
+
+    // Dispatch the addToCart action with the item
+    dispatch(removeCart(item));
+  };
   return (
     <div className="cartItemCotainer">
       <div className="changeCount">
         <div className="increment">
           <span
-            className="iconfont icon-jiantou-copy-copy-copy"
+            className="iconfont icon-jiantou-copy"
             onClick={() => {
-              dispatch(increment({ id, img, title, price , size}));
+              handleAddToCart();
             }}
           ></span>
         </div>
         <div className="cartCount">{count}</div>
         <div className="decrement">
           <span
-            className="iconfont icon-jiantou-copy-copy"
+            className="iconfont icon-jiantou"
             onClick={() => {
-              dispatch(decrement({ id, img, title, price ,size}));
+              handleRemoveCart();
             }}
           ></span>
         </div>
@@ -40,7 +59,7 @@ export default function CartItem(props) {
       <div className="cartImg" style={{ backgroundImage: `url(${img})` }}></div>
 
       <div className="midDisplay">
-      <Link
+        <Link
           to={`/products/${id}`}
           style={{ textDecoration: "none", color: "inherit" }}
         >
@@ -49,7 +68,7 @@ export default function CartItem(props) {
         <div className="cartSize"> Size: {size}</div>
       </div>
 
-      <div className="cartPrice">{totalPrice}</div>
+      <div className="cartPrice">{cost}</div>
     </div>
   );
 }

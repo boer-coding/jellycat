@@ -15,10 +15,6 @@
   "author": "Boer",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^9.0.1",
-    "dotenv": "^16.4.5",
-    "passport": "^0.7.0",
-    "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^8.0.0"
+    "concurrently": "^9.0.1"
   }
 }

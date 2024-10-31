@@ -18,7 +18,7 @@
 }
 
 .cartItemCotainer .changeCount .cartCount {
-  text-align: center;
+  text-align: start;
 }
 
 .cartItemCotainer .changeCount .iconfont {

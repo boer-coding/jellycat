@@ -6,7 +6,8 @@ import Home from "../components/HomePage/Home.jsx";
 import Explore from "../components/ExplorePage/Explore.jsx";
 import BestNew from "../components/BestNewPage/BestNew.jsx";
 import Product from "../components/ProductPage/Product.jsx";
-import Login from "../components/LoginPage/Login.jsx";
+import Login from "../components/UserPage/LoginPage/Login.jsx";
+import Dashboard from "../components/UserPage/Dashboard/Dashboard.jsx";
 
 const routerList = [
   {
@@ -50,6 +51,13 @@ const routerList = [
         path: "/login",
         element: (
           <Login
+          />
+        ),
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <Dashboard
           />
         ),
       },

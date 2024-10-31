@@ -1,17 +1,6 @@
 const express = require("express"); // Import Express
 const router = express.Router(); // Initialize the router
-const Banner = require("../models/banners"); // Import the Banner model
 const Product = require("../models/products");
-
-// Route to get all banners
-router.get("/banners", async (req, res) => {
-  try {
-    const banners = await Banner.find(); // Fetch all banners from the collection
-    res.json(banners); // Send data as JSON
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch banners" });
-  }
-});
 
 // Route to get all products with pagination and optional category
 router.get("/products", async (req, res) => {
@@ -28,7 +17,6 @@ router.get("/products", async (req, res) => {
       .skip(skip)
       .limit(pageSize)
       .exec();
-      console.log("req",req.query);
 
     // Get the total number of products that match the query
     const totalProducts = await Product.countDocuments(query);
@@ -105,52 +93,60 @@ router.get("/newin", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch bestselling products" });
   }
 });
-  
-  
-  
-  
 
-// // Route to get all products
-// router.post("/products", async (req, res) => {
-//   const newItem = new Product({
-//     id: 26,
-//     title: "Amuseables Acorn",
-//     category: "Amuseables",
-//     des: "A round woodland rascal, Amuseables Acorn has nutty brown fur, with a fuzzly beret and fine suedey stalk! This affable acorn can't wait for autumn, and scoots round the forest on chocolate cord feet!",
-//     priceList: {
-//       small: 30,
-//       medium: 38,
-//       large: 45,
-//     },
-//     pics: {
-//       default: {
-//         front:
-//           "https://raw.githubusercontent.com/boer-coding/boer-coding/main/data/jellycat/images/products/aac1.jpg",
-//         side: "https://raw.githubusercontent.com/boer-coding/boer-coding/main/data/jellycat/images/products/aac2.jpg",
-//         back: "https://raw.githubusercontent.com/boer-coding/boer-coding/main/data/jellycat/images/products/aac3.jpg",
-//       },
-//     },
-//   });
 
-//   try {
-//     const product = await newItem.save(); // Fetch all products from the collection
-//     res.json(product); // Send data as JSON
-//   } catch (err) {
-//     res.status(500).json({ error: "Failed to fetch products" });
-//   }
-// });
-
-// Route to get all products
-router.patch("/products/:id", async (req, res) => {
+// Route to search for products by title and return selected fields
+router.get("/search", async (req, res) => {
   try {
-    const updatePosts = await Product.updateOne(
-      { _id: req.params.id },
-      { $set: { title: req.body.title } }
-    ); // Fetch all products from the collection
-    res.json(updatePosts); // Send data as JSON
+    const searchTerm = req.query.q;
+    const page = Math.max(1, parseInt(req.query.page) || 1);
+    const pageSize = Math.max(1, Math.min(parseInt(req.query.pageSize) || 6, 100));
+    const skip = (page - 1) * pageSize;
+
+    if (!searchTerm) {
+      return res.status(400).json({ error: "Search term is required" });
+    }
+
+    // Perform a case-insensitive search on the title field
+    const query = {
+      title: { $regex: searchTerm, $options: "i" }
+    };
+
+    // Fetch products based on the search query, only returning the necessary fields
+    const products = await Product.find(query, {
+      title: 1,
+      _id: 1,
+      "priceList.small": 1,  // Adjust based on your actual price structure
+      "pics.default.front": 1      // Adjust based on your actual image structure
+    })
+      .skip(skip)
+      .limit(pageSize)
+      .exec();
+
+    // Get the total number of products that match the search query
+    const totalProducts = await Product.countDocuments(query);
+
+    // Map the products to include only necessary fields for frontend
+    const result = products.map(product => ({
+      id: product._id,
+      title: product.title,
+      price: product.priceList.small || 0,  // Default price if undefined
+      img: product.pics?.default?.front || ""       // Default image if undefined
+    }));
+
+    // Send the response with products and pagination info
+    res.json({
+      products: result,
+      currentPage: page,
+      pageSize: pageSize,
+      totalPages: Math.ceil(totalProducts / pageSize),
+      totalProducts: totalProducts,
+    });
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch products" });
+    console.error(err);
+    res.status(500).json({ error: "Failed to search products" });
   }
 });
+
 
 module.exports = router;

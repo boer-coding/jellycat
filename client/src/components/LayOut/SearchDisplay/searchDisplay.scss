@@ -1,0 +1,38 @@
+.searchContainer {
+  width: 80%;
+  height: 60px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+
+  .searchPicContainer {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    .searchPic {
+      width: 50px;
+      height: 50px;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+  .textContainer {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 10px;
+  }
+
+  .searchPrice::before{
+    content: "$ ";
+  }
+
+  .searchPrice::after{
+    content: ".00";
+  }
+}
+
+

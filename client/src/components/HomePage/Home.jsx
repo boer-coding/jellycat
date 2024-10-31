@@ -149,27 +149,27 @@ function Home() {
             </div>
             <div className="arrow">
               <div>
-                <span className="iconfont icon-lunbozuofangun" onClick={picLeft}></span>
+                <span className="iconfont icon-shouyezhuyetubiao05" onClick={picLeft}></span>
               </div>
               <div>
                 <span
-                  className="iconfont icon-lunboyoufangun"
+                  className="iconfont icon-shouyezhuyetubiao04"
                   onClick={picRight}
                 ></span>
               </div>
             </div>
             <ul className="circleList" ref={circleList}>
               <li className="circle" onClick={() => goToImage(0)}>
-                <span className="iconfont icon-circle"></span>
+                <span className="iconfont icon-yk_yuanquan_fill"></span>
               </li>
               <li className="circle" onClick={() => goToImage(1)}>
-                <span className="iconfont icon-circle"></span>
+                <span className="iconfont icon-yk_yuanquan_fill"></span>
               </li>
               <li className="circle" onClick={() => goToImage(2)}>
-                <span className="iconfont icon-circle"></span>
+                <span className="iconfont icon-yk_yuanquan_fill"></span>
               </li>
               <li className="circle" onClick={() => goToImage(3)}>
-                <span className="iconfont icon-circle"></span>
+                <span className="iconfont icon-yk_yuanquan_fill"></span>
               </li>
             </ul>
           </div>

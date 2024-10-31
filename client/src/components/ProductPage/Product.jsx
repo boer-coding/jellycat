@@ -2,23 +2,24 @@ import React, { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { increment } from "../../store/modules/counterStore";
 import "./product.css";
 import axios from "axios";
+import { addToCart } from "../../helpers/syncCart";
 
 export default function Product() {
   const { id } = useParams(); // Get the product id from the URL params
-  const imgList = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [appendFirst, setAppendFirst] = useState(false);
-  const [size, setSize] = useState("default"); // Set initial size to 'small'
+  const [size, setSize] = useState("small"); // Set initial size to 'small'
   // Manage background color and button message state
   const [bgColor, setBgColor] = useState("#33cee5"); // Manage background color for "Add to Bag" button
   const [bagMsg, setBagMsg] = useState("Add to Bag");
+  const dispatch = useDispatch();
 
   const totalImages = 3; // Assuming you have 4 images
   const transitionDuration = 500; // Duration of the slide transition
-  const dispatch = useDispatch();
+
+  const imgList = useRef(null);
 
   useEffect(() => {
     if (imgList.current && !appendFirst) {
@@ -73,11 +74,13 @@ export default function Product() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchProduct = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`https://jellycat-backend-14f22f6178c9.herokuapp.com/products/${id}`);
+        const response = await axios.get(
+          `https://jellycat-backend-14f22f6178c9.herokuapp.com/products/${id}`
+        );
         setProduct(response.data);
       } catch (err) {
         setError("Failed to fetch product");
@@ -88,8 +91,7 @@ export default function Product() {
     };
 
     fetchProduct();
-  }, [id])
-
+  }, [id]);
 
   // Handle loading state
   if (loading) {
@@ -108,7 +110,6 @@ export default function Product() {
 
   // Destructure product properties
   const { title, category, des, priceList, pics } = product;
-
   // Function to handle dropdown change
   const handleSizeChange = (event) => {
     const selectedValue = event.target.value; // Get the selected size from dropdown
@@ -116,12 +117,20 @@ export default function Product() {
   };
 
   const img = pics?.default?.front; // Safely access nested images
+  
+  const handleAddToCart = () => {
+    // Prepare the item object with necessary properties
+    const item = {
+      id,
+      img,
+      title,
+      price: priceList[size],
+      size,
+    };
 
-  const handleAddCart = () => {
-    if (size !== "default") {
-      dispatch(increment({ id, img, title, price:priceList[size], size }));
-      handleChange(); // Any additional logic after adding to the cart
-    }
+    dispatch(addToCart(item));
+
+    // Dispatch the addToCart action with the item
   };
   // Handle the button click event
   const handleChange = () => {
@@ -130,8 +139,9 @@ export default function Product() {
     setTimeout(() => {
       setBagMsg("Add to Bag");
       setBgColor("#33cee5");
-    }, 300);
+    }, 500);
   };
+
 
   return (
     <div className="toyContainer">
@@ -161,13 +171,13 @@ export default function Product() {
           <div className="arrow">
             <div>
               <span
-                className="iconfont icon-lunbozuofangun"
+                className="iconfont icon-shouyezhuyetubiao05"
                 onClick={picLeft}
               ></span>
             </div>
             <div>
               <span
-                className="iconfont icon-lunboyoufangun"
+                className="iconfont icon-shouyezhuyetubiao04"
                 onClick={picRight}
               ></span>
             </div>
@@ -188,9 +198,6 @@ export default function Product() {
               Choose a Style
             </label>
             <select name="size" id="dropdown" onChange={handleSizeChange}>
-              <option value="default" disabled={size !== "default"}>
-                Choose Options
-              </option>
               <option value="small">Small</option>
               <option value="medium">Medium</option>
               <option value="large">Large</option>
@@ -199,25 +206,23 @@ export default function Product() {
 
           <br />
           <div className="shopping">
-            <div className="price">{size === "default"? priceList["small"]:priceList[size]}</div>
+            {!loading && <div className="price">{priceList[size]}</div>}
             <div
               className="addToContainer"
               style={{ backgroundColor: bgColor }}
             >
-              <div onClick={handleAddCart}>{bagMsg}</div>
+              <div
+                onClick={() => {
+                  handleAddToCart();
+                  handleChange();
+                }}
+              >
+                {bagMsg}
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* <div className="bestContainer">
-        <GridBox
-          gridTitle="Best Sellers"
-          gridLink="/bestsellers"
-          isShow={true}
-          gridBox={product}
-        />
-      </div> */}
     </div>
   );
 }
