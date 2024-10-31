@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router";
 import { useBanner } from "../../App.jsx";
@@ -33,7 +33,7 @@ export default function LayOut() {
     if (query) {
       setLoading(true); // Start loading
       try {
-        const response = await fetch(`http://localhost:8080/search?q=${query}`);
+        const response = await fetch(`https://jellycat-backend-14f22f6178c9.herokuapp.com/search?q=${query}`);
         if (response.ok) {
           const data = await response.json();
           setSearchResults(data.products); // Update search results
@@ -51,8 +51,6 @@ export default function LayOut() {
     }
   }, 900);
 
-  // Adjust debounce delay as needed
-  console.log(searchResults);
   // Function to open cart (slide it into view)
   const handleCart = () => {
     if (cartRef.current && darken.current) {
@@ -113,7 +111,7 @@ export default function LayOut() {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:8080/logout", {
+      const response = await fetch("https://jellycat-backend-14f22f6178c9.herokuapp.com/logout", {
         method: "POST",
         credentials: "include", // Ensure cookies are sent
       });
@@ -137,8 +135,6 @@ export default function LayOut() {
       // Redirect the user to the dashboard if logged in
       navigate("/dashboard");
     } else {
-      // If not logged in, you can show the login page or perform any other action
-      console.log("User is not logged in.");
       // Redirect to login page or handle the logic
       navigate("/login");
     }

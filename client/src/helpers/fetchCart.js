@@ -1,7 +1,7 @@
 // actions/cartActions.js
 export const fetchCartFromSession = async () => {
   try {
-    const response = await fetch('http://localhost:8080/fetchSessionCart', {
+    const response = await fetch('https://jellycat-backend-14f22f6178c9.herokuapp.com/fetchSessionCart', {
       method: 'GET',
       credentials: 'include',  // Include cookies for session access
     });
@@ -26,7 +26,7 @@ export const fetchCartFromSession = async () => {
 // Fetch Cart from User Collection
 export const fetchCartFromUser = async (userId) => {
   try {
-    const response = await fetch('http://localhost:8080/fetchUserCart', {
+    const response = await fetch('https://jellycat-backend-14f22f6178c9.herokuapp.com/fetchUserCart', {
       method: 'POST',  // Use POST to send data in the request body
       headers: {
         'Content-Type': 'application/json',  // Set content type to JSON

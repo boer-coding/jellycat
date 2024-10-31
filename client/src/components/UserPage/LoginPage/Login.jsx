@@ -8,10 +8,11 @@ import {
   InputAdornment,
   Alert,
 } from "@mui/material";
-import {
-  Visibility,
-  VisibilityOff,
-} from "@mui/icons-material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { registerUser } from "../../../helpers/registerUser";
+import { loginUser } from "../../../helpers/logInUser";
+import { useNavigate } from "react-router-dom";
+
 function Login() {
   const [isSignUp, setIsSignUp] = useState(false); // Track if it's sign-up or sign-in
   const [showPassword, setShowPassword] = useState(false); // Track password visibility
@@ -24,6 +25,7 @@ function Login() {
     username: "",
     password: "",
   }); // Track form data
+  const navigate = useNavigate();
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -73,85 +75,12 @@ function Login() {
         return; // Prevent form submission if username is invalid
       }
 
-      try {
-        const response = await fetch("http://localhost:8080/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-          credentials: "include", // Ensure cookies (session cookies) are included
-        });
+      await registerUser(formData, displayMessage, setSuccessMessage, setErrorMessage, navigate);
 
-        const result = await response.json();
-
-        if (response.ok) {
-          displayMessage(
-            setSuccessMessage,
-            `Successfully registered, welcome to Jellycat ${formData.username}!`
-          );
-
-          // Redirect to dashboard after successful registration and login
-          const { user } = result;
-          sessionStorage.setItem("isLoggedIn", "true");
-          sessionStorage.setItem("email", user.email);
-          sessionStorage.setItem("username", user.username);
-          window.location.href = result.redirectUrl;
-        } else if (response.status === 409) {
-          // Handle duplicate user error
-          displayMessage(
-            setErrorMessage,
-            "User already exists. Please try logging in."
-          );
-        } else {
-          // Handle other errors returned from the server
-          displayMessage(
-            setErrorMessage,
-            result.message || "Sign up failed, please try again."
-          );
-        }
-      } catch (error) {
-        // Handle network or other fetch-related errors
-        displayMessage(
-          setErrorMessage,
-          "Error during sign-up, please try again later."
-        );
-      }
     } else {
       // Handle Sign In
-      try {
-        const response = await fetch("http://localhost:8080/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password,
-          }),
-          credentials: "include", // Ensure cookies (session cookies) are included in the request
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-          const { user } = result;
-          sessionStorage.setItem("isLoggedIn", "true");
-          sessionStorage.setItem("email", user.email);
-          sessionStorage.setItem("username", user.username);
-          window.location.href = result.redirectUrl;
-        } else {
-          displayMessage(
-            setErrorMessage,
-            result.message || "Sign in failed, please check your credentials."
-          );
-        }
-      } catch (error) {
-        displayMessage(
-          setErrorMessage,
-          "Error during sign-in, please try again later."
-        );
-      }
+      await loginUser(formData, displayMessage, setErrorMessage, navigate);
+      
     }
   };
 

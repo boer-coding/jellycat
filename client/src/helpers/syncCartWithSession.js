@@ -2,7 +2,7 @@
 export const syncCartWithSession = async (cartList) => {
   try {
     // Make the API request to sync the cart with the backend session
-    const response = await fetch('http://localhost:8080/updateSessionCart', {  // Make sure you have an appropriate route for updating cart
+    const response = await fetch('https://jellycat-backend-14f22f6178c9.herokuapp.com/updateSessionCart', {  // Make sure you have an appropriate route for updating cart
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

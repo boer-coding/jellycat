@@ -16,6 +16,8 @@ const syncCart = async (cartList) => {
   }
 };
 
+
+
 // Redux action to add an item to the cart and sync it
 export const addToCart = (item) => async (dispatch, getState) => {
   // Update Redux store

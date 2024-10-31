@@ -5,8 +5,7 @@ import Banner from "../BestNewPage/BestNewBanner/BestNewBanner";
 import { useBanner } from "../../App.jsx";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import axios from "axios";
-
+import {fetchProducts} from "../../helpers/fetchProducts"
 import "./explore.css";
 
 export default function Explore() {
@@ -19,21 +18,17 @@ export default function Explore() {
   const pageSize = 6; // Define your page size
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const loadProducts = async () => {
       try {
-        const apiUrl = category
-          ? `https://jellycat-backend-14f22f6178c9.herokuapp.com/products?category=${category}&page=${currentPage}&pageSize=${pageSize}`
-          : `https://jellycat-backend-14f22f6178c9.herokuapp.com/products?page=${currentPage}&pageSize=${pageSize}`;
-
-        const response = await axios.get(apiUrl);
-        setProducts(response.data.products);
-        setTotalPages(response.data.totalPages);
+        const result = await fetchProducts(category, currentPage, pageSize);
+        setProducts(result.products);
+        setTotalPages(result.totalPages);
       } catch (error) {
-        console.error("Failed to fetch products:", error);
+        console.error("Error loading products:", error);
       }
     };
 
-    fetchProducts();
+    loadProducts();
   }, [currentPage, category]);
 
   return (

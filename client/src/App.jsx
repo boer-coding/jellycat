@@ -53,7 +53,7 @@ function App() {
       if (isLoggedIn) {
 
         await syncCartWithUser(userId, cartList);
-        fetch("http://localhost:8080/clearSessionCart", {
+        fetch("https://jellycat-backend-14f22f6178c9.herokuapp.com/clearSessionCart", {
           method: "POST",
           credentials: "include",
         })

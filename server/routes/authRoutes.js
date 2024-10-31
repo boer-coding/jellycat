@@ -49,8 +49,7 @@ router.post("/register", async (req, res) => {
         user: {
           email: user.email, // The user's email
           username: user.username || "Jelly fan", // The user's username or default name
-        },
-        redirectUrl: "/dashboard", // Optional: redirect URL for frontend
+        }
       });
     });
   } catch (error) {
@@ -121,8 +120,7 @@ router.post("/login", (req, res, next) => {
         user: {
           email: user.email, // The user's email
           username: user.username || "Jelly fan", // The user's username or default name
-        },
-        redirectUrl: "/dashboard", // Optional: redirect URL for frontend
+        }
       });
     });
   })(req, res, next); // Immediately invoke the authenticate function

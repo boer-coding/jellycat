@@ -3,7 +3,7 @@
 export const checkLoginStatus = async () => {
   try {
     // Make a request to the backend to check if the user is logged in
-    const response = await fetch('http://localhost:8080/auth/status', {
+    const response = await fetch('https://jellycat-backend-14f22f6178c9.herokuapp.com/auth/status', {
       method: 'GET',
       credentials: 'include'  // Ensure cookies (e.g., session) are sent with the request
     });
