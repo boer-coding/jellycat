@@ -1,7 +1,10 @@
 // cartApi.js - Function to sync cart with the user collection in the database
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 export const syncCartWithUser = async (userId, cartList) => {
     try {
-      const response = await fetch('https://jellycat-backend-14f22f6178c9.herokuapp.com/updateUserCart', {
+      const response = await fetch(`${API_BASE_URL}/updateUserCart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -10,6 +13,7 @@ export const syncCartWithUser = async (userId, cartList) => {
           userId: userId,  // Include the userId
           cartList: cartList  // Include the cartList
         }),   // Send the cart to the user collection
+        
       });
   
       if (!response.ok) {

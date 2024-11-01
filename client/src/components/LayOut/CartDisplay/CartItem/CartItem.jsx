@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart, removeCart } from "../../../../helpers/syncCart";
+import { addToCart, removeCart } from "../../../../helpers/cartRoutes/syncCart";
 import "./cartItem.css";
 
 export default function CartItem(props) {

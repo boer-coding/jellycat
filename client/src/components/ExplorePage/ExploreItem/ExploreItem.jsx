@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../../helpers/syncCart";
+import { addToCart } from "../../../helpers/cartRoutes/syncCart";
 import "./exploreItem.css";
 
 export default function ExploreItem(props) {

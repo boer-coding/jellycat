@@ -1,4 +1,4 @@
-import { increment, decrement } from "../store/modules/counterStore";
+import { increment, decrement } from "../../store/modules/counterStore";
 import { syncCartWithSession } from "./syncCartWithSession";
 import { syncCartWithUser } from "./syncCartWithUser";
 

@@ -20,12 +20,21 @@
   background-blend-mode: darken;
 }
 
-.shoppingCart {
+.cartDisplay {
   position: fixed;
   right: 0;
   transform: translateX(102%);
   transition: 1s all ease;
-  z-index: 5;
+  z-index: 15;
+}
+
+.menuDisplay {
+  position: fixed;
+  left: 0;
+  transform: translateX(-102%);
+  transition: 1s all ease;
+  z-index: 15;
+  background-color: #33cee5;
 }
 
 .mainLayOut {
@@ -33,10 +42,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .mid {
   flex-grow: 1;
+  width: 100%;
 }
 
 .navBar {
@@ -44,58 +55,56 @@
   height: 100px;
   padding: 30px 50px 5px 50px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-size: 12px;
   box-sizing: border-box;
   flex-grow: 0;
 }
 
-.navBar .navBarLink {
-  width: 45%;
+.navBar .navTabLeftContainer {
+  width: 30%;
   display: flex;
+  justify-content: start;
   align-items: center;
 }
 
-.navBar .navBarLink .navBarLinkContainer {
-  width: 300px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  align-items: center;
-  opacity: 0.5;
-  text-align: center;
+.navBar .navTabLeftContainer .navMenu {
+  width: 50px;
 }
 
-.navBar .navBarLink .navBarLinkContainer .navBarItem {
-  height: 20px;
-  text-align: center;
-  line-height: 20px;
-  padding: 5px 0px;
-  cursor: pointer;
+.navBar .navTabLeftContainer .navMenu span {
+  font-size: 30px;
 }
 
-.navBar .navBarLink .navBarLinkContainer .navBarItem:hover {
-  background-color: #f2f2f2;
-}
-
-.navBar .navBarLink .navBarLinkContainer .active {
-  font-weight: 600;
-}
-
-.navBar .navSearchContainer {
-  width: 25%;
+.navBar .navTabLeftContainer .navSearchContainer {
+  width: 200px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   position: relative;
 }
 
-.navBar .navSearchContainer .navSearchInput {
-  position: relative;
+.navBar .navTabLeftContainer .navSearchContainer .navSearch {
+  position: absolute;
+  left: 10px;
+  cursor: pointer;
+}
+
+.navBar .navTabLeftContainer .navSearchContainer .navSearch span {
+  font-size: 20px;
+}
+
+.navBar .navTabLeftContainer .navSearchContainer .navSearchClear {
+  position: absolute;
+  right: 8px;
+  cursor: pointer;
+}
+
+.navBar .navTabLeftContainer .navSearchContainer .navSearchInput {
   display: flex;
 }
 
-.navBar .navSearchContainer .navSearchInput .navInputBox {
+.navBar .navTabLeftContainer .navSearchContainer .navSearchInput .navInputBox {
   font-size: 12px;
   width: 200px;
   background: #fff;
@@ -105,66 +114,36 @@
   box-sizing: border-box;
 }
 
-.navBar .navSearchContainer .navSearchInput .navInputBox:focus {
+.navBar .navTabLeftContainer .navSearchContainer .navSearchInput .navInputBox:focus {
   outline: none;
   /* Remove the default focus outline */
 }
 
-.navBar .navSearchContainer .navSearchInput .icon-sousuo {
+.navBar .navTabLeftContainer .navSearchContainer .navSearchDisplay {
+  min-height: 50px;
   position: absolute;
-  top: 30%;
-  left: 8%;
-  pointer-events: none;
-  /* Ensures the input is still clickable */
-}
-
-.navBar .navSearchContainer .searchDisplay {
-  position: absolute;
-  width: 200px;
+  width: 300px;
   background-color: white;
-  top: 60px;
-  left: 90px;
-  z-index: 5;
+  top: 50px;
+  left: 0px;
+  z-index: 10;
+  border-radius: 2px;
+  box-shadow: 1px 1px 12px gray;
 }
 
-.navBar .navTabContainer {
-  width: 100px;
+.navBar .navTabRightContainer {
+  width: 30%;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
 }
 
-.navBar .navTabContainer .navIcon {
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  cursor: pointer;
-  position: relative;
-}
-
-.navBar .navTabContainer .navIcon .logBox {
-  visibility: hidden;
-  position: absolute;
-  width: 50px;
-  height: 30px;
-  line-height: 30px;
-  font-size: 10px;
-  text-align: center;
-  background-color: #33cee5;
-  transition: all 0.8s ease;
-}
-
-.navBar .navTabContainer .navIcon:hover .logBox {
-  visibility: visible;
-}
-
-.navBar .navTabContainer .navCart {
+.navBar .navTabRightContainer .navCart {
   display: grid;
   position: relative;
 }
 
-.navBar .navTabContainer .navCart .displayCart {
+.navBar .navTabRightContainer .navCart .displayCart {
   font-size: 11px;
   color: WHITE;
   width: 18px;
@@ -178,16 +157,41 @@
   right: -14%;
 }
 
-.navBar .navTabContainer .navLog span {
+.navBar .navTabRightContainer .navLog span {
   font-size: 25px;
 }
 
-.navBar .navTabContainer .navCart span {
+.navBar .navTabRightContainer .navCart span {
   font-size: 30px;
 }
 
-.navBar .navTabContainer .navIcon:hover {
+.navBar .navIcon {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  position: relative;
+}
+
+.navBar .navIcon .logBox {
+  visibility: hidden;
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 10px;
+  text-align: center;
+  background-color: #33cee5;
+  transition: all 0.8s ease;
+}
+
+.navBar .navIcon:hover {
   background-color: #f2f2f2;
+}
+
+.navBar .navIcon:hover .logBox {
+  visibility: visible;
 }
 
 .footerContainer {

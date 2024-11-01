@@ -1,11 +1,12 @@
 // src/api/fetchProducts.js
 import axios from 'axios';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const fetchProducts = async (category, currentPage, pageSize) => {
   try {
     const apiUrl = category
-      ? `https://jellycat-backend-14f22f6178c9.herokuapp.com/products?category=${category}&page=${currentPage}&pageSize=${pageSize}`
-      : `https://jellycat-backend-14f22f6178c9.herokuapp.com/products?page=${currentPage}&pageSize=${pageSize}`;
+      ? `${API_BASE_URL}/products?category=${category}&page=${currentPage}&pageSize=${pageSize}`
+      : `${API_BASE_URL}/products?page=${currentPage}&pageSize=${pageSize}`;
 
     const response = await axios.get(apiUrl);
 

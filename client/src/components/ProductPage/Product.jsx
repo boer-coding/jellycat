@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./product.css";
 import axios from "axios";
-import { addToCart } from "../../helpers/syncCart";
+import { addToCart } from "../../helpers/cartRoutes/syncCart";
+import { fetchProductById } from "../../helpers/productsRoutes/fetchProductById";
 
 export default function Product() {
   const { id } = useParams(); // Get the product id from the URL params
@@ -75,27 +76,12 @@ export default function Product() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(
-          `https://jellycat-backend-14f22f6178c9.herokuapp.com/products/${id}`
-        );
-        setProduct(response.data);
-      } catch (err) {
-        setError("Failed to fetch product");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProduct();
+    fetchProductById(id, setLoading, setProduct, setError);
   }, [id]);
 
   // Handle loading state
   if (loading) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   // Handle error state
@@ -117,7 +103,7 @@ export default function Product() {
   };
 
   const img = pics?.default?.front; // Safely access nested images
-  
+
   const handleAddToCart = () => {
     // Prepare the item object with necessary properties
     const item = {
@@ -141,7 +127,6 @@ export default function Product() {
       setBgColor("#33cee5");
     }, 500);
   };
-
 
   return (
     <div className="toyContainer">

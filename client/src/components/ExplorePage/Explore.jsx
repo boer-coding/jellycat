@@ -5,7 +5,7 @@ import Banner from "../BestNewPage/BestNewBanner/BestNewBanner";
 import { useBanner } from "../../App.jsx";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import {fetchProducts} from "../../helpers/fetchProducts"
+import {fetchProducts} from "../../helpers/productsRoutes/fetchProducts.js"
 import "./explore.css";
 
 export default function Explore() {

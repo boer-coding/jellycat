@@ -1,38 +1,37 @@
-.searchContainer {
+.searchResContainer {
   width: 80%;
   height: 60px;
   margin: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  background-color: white;
+  justify-content: space-around;
 }
 
-.searchContainer .searchPicContainer {
+.searchResContainer .searchPicContainer {
   width: 30%;
   display: flex;
   align-items: center;
 }
 
-.searchContainer .searchPicContainer .searchPic {
+.searchResContainer .searchPicContainer .searchPic {
   width: 50px;
   height: 50px;
   background-position: center;
   background-size: cover;
 }
 
-.searchContainer .textContainer {
+.searchResContainer .searchText {
   width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 10px;
+  font-size: 12px;
 }
 
-.searchContainer .searchPrice::before {
+.searchResContainer .searchPrice::before {
   content: "$ ";
 }
 
-.searchContainer .searchPrice::after {
+.searchResContainer .searchPrice::after {
   content: ".00";
 }

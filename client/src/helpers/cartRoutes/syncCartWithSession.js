@@ -1,8 +1,9 @@
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const syncCartWithSession = async (cartList) => {
   try {
     // Make the API request to sync the cart with the backend session
-    const response = await fetch('https://jellycat-backend-14f22f6178c9.herokuapp.com/updateSessionCart', {  // Make sure you have an appropriate route for updating cart
+    const response = await fetch(`${API_BASE_URL}/updateSessionCart`, {  // Make sure you have an appropriate route for updating cart
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

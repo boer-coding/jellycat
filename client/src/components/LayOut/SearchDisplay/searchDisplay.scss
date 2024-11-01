@@ -1,11 +1,10 @@
-.searchContainer {
+.searchResContainer {
   width: 80%;
   height: 60px;
   margin: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  background-color: white;
+  justify-content: space-around;
 
   .searchPicContainer {
     width: 30%;
@@ -18,21 +17,19 @@
       background-size: cover;
     }
   }
-  .textContainer {
+  .searchText {
     width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 10px;
+    font-size: 12px;
   }
 
-  .searchPrice::before{
+  .searchPrice::before {
     content: "$ ";
   }
 
-  .searchPrice::after{
+  .searchPrice::after {
     content: ".00";
   }
 }
-
-

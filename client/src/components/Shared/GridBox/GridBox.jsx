@@ -3,7 +3,7 @@ import GridBlock from "./GridBlock/GridBlock";
 import "./gridBox.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { fetchGroupProducts } from "../../../helpers/productsRoutes/fetchGroup";
 
 export default function GridBox(props) {
   const { gridTitle, gridLink, isShow} = props;
@@ -13,26 +13,9 @@ export default function GridBox(props) {
   const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true); // Start loading
-      try {
-        const apiUrl =
-        gridTitle === "NEW IN"
-            ? `https://jellycat-backend-14f22f6178c9.herokuapp.com/newin`
-            : `https://jellycat-backend-14f22f6178c9.herokuapp.com/bestsellers`;
-
-        const response = await axios.get(apiUrl);
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Failed to fetch products:", error);
-        setError("Failed to fetch products. Please try again later.");
-      } finally {
-        setLoading(false); // Stop loading
-      }
-    };
-
-    fetchProducts();
+    fetchGroupProducts(gridTitle, setLoading, setProducts, setError);
   }, [gridTitle]);
+
   if (loading) {
     return <div>Loading...</div>; // Loading indicator
   }

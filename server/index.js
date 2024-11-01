@@ -6,11 +6,12 @@ const corsMiddleware = require('./config/cors');
 const multipartMiddleware = require('./config/multipart');
 const connectDB = require('./config/db');
 
+
 // Load environment variables from the .env file
 dotenv.config();
 
 const app = express();
-
+app.set('trust proxy', true)
 app.use(corsMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

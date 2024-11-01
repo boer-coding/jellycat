@@ -1,12 +1,18 @@
 import "./App.css";
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import { BrowserRouter } from "react-router-dom";
 import CentralizedRouter from "./router/CentralizedRouter";
 import ScrollToTop from "./components/Shared/ScrollTop/ScrollTop.jsx";
-import { checkLoginStatus } from "./helpers/auth.js"; // Import the function from auth.js
-import { fetchBannerData } from "./helpers/fetchBanner.js";
-import {syncCartWithUser} from "./helpers/syncCartWithUser.js"
-import { useSelector } from "react-redux";
+import { checkLoginStatus } from "./helpers/userRoutes/authUser.js"; // Import the function from auth.js
+import { fetchBannerData } from "./helpers/bannersRoutes/fetchBanner.js";
+import {
+  fetchCartFromSession,
+  fetchCartFromUser,
+} from "./helpers/cartRoutes/fetchCart.js";
+import { setCart } from "./store/modules/counterStore.js";
+
 // Create the BannerContext
 const BannerContext = createContext();
 
@@ -20,59 +26,54 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null); // Ensure setUserId is defined correctly
 
-  const { cartList } = useSelector((state) => state.counterSlice);
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const initializeApp = async () => {
-      // Fetch banner data
-      const { data, error } = await fetchBannerData();
-      if (error) {
-        setErrorBanner(error);
-      } else {
-        setBannerData(data);
-      }
-      setLoadingBanner(false);
+      try {
+        // Fetch banner data
+        const { data, error } = await fetchBannerData();
+        if (error) {
+          setErrorBanner(error);
+        } else {
+          setBannerData(data);
+        }
+        setLoadingBanner(false);
 
-      // Check login status
-      const authStatus = await checkLoginStatus();
-      setIsLoggedIn(authStatus.isLoggedIn); // Update the login state
-      setUserId(authStatus.userId);
+        // Check login status
+        const authStatus = await checkLoginStatus();
+        setIsLoggedIn(authStatus.isLoggedIn);
+        setUserId(authStatus.userId);
+      } catch (error) {
+        console.error("Error initializing app:", error);
+      }
     };
 
-    initializeApp(); // Initialize the app on component mount
+    initializeApp();
   }, []);
 
-  if (isLoggedIn) {
-    sessionStorage.setItem("isLoggedIn", "true");
-    sessionStorage.setItem("userId", userId);
-  }
-
+  // Fetch the cart based on login status and userId
   useEffect(() => {
-    const syncCart = async () => {
-      if (isLoggedIn) {
+    console.log("dispath is running in app.js");
+    const fetchAndSetCart = async () => {
+      try {
+        let cart;
+        if (isLoggedIn && userId) {
+          cart = await fetchCartFromUser(userId); // Fetch the cart from user collection
+        } else {
+          cart = await fetchCartFromSession(); // Fetch the cart from session
+        }
 
-        await syncCartWithUser(userId, cartList);
-        fetch("https://jellycat-backend-14f22f6178c9.herokuapp.com/clearSessionCart", {
-          method: "POST",
-          credentials: "include",
-        })
-          .then((response) => {
-            if (response.ok) {
-              console.log("Session cart cleared");
-            }
-          })
-          .catch((error) => {
-            console.error("Error clearing seesion");
-          });
-      } 
+        if (cart) {
+          dispatch(setCart(cart)); // Dispatch setCart only if cart is not empty
+        }
+      } catch (error) {
+        console.error("Error fetching cart:", error);
+      }
     };
 
-    syncCart(); // Initialize the app on component mount
-  }, [isLoggedIn]);
-  // Log outputs
-  console.log("isLoggedIn", sessionStorage.getItem("isLoggedIn"));
-  // console.log("loadingBanner", loadingBanner);
+    fetchAndSetCart();
+  }, [isLoggedIn, userId, dispatch]); // Include all relevant dependencies
 
   return (
     <div>

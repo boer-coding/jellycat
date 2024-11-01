@@ -1,7 +1,7 @@
 import React from "react";
-const email = sessionStorage.getItem("email");
-const username = sessionStorage.getItem("username");
-const UserInformation = () => {
+
+const UserInformation = (props) => {
+  const {email, username} = props;
   return (
     <div>
       <h2>User Information</h2>

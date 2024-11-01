@@ -3,7 +3,7 @@ import "./gridBlock.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { addToCart } from "../../../../helpers/syncCart";
+import { addToCart } from "../../../../helpers/cartRoutes/syncCart";
 export default function GridBlock(props) {
   let { id, img, title, price, pics } = props;
   const size = "small";

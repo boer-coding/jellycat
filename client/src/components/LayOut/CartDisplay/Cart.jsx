@@ -1,39 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCartFromSession, fetchCartFromUser} from "../../../helpers/fetchCart.js";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import CartItem from "./CartItem/CartItem";
-import { setCart } from "../../../store/modules/counterStore.js";
 import Pagination from "@mui/material/Pagination";
 import "./cart.css";
 import "../../../font/iconfont.css";
 
 export default function Cart({ onClose }) {
-  const isLoggedIn = sessionStorage.getItem("isLoggedIn");
-  const userId = sessionStorage.getItem("userId");
 
-  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // Set the number of items to display per page
 
-  useEffect(() => {
-    const fetchAndSetCart = async () => {
-      if (isLoggedIn) {
-        const cart = await fetchCartFromUser(userId); // Fetch the cart from session
-        if (cart) {
-          // Dispatch the setCart action only if the cart is not empty
-          dispatch(setCart(cart));
-        }
-      } else {
-        const cart = await fetchCartFromSession(); // Fetch the cart from session
-        if (cart) {
-          // Dispatch the setCart action only if the cart is not empty
-          dispatch(setCart(cart));
-        }
-      }
-    };
-
-    fetchAndSetCart();
-  }, [dispatch]);
 
   const { cartList, totalCount, totalCost } = useSelector(
     (state) => state.counterSlice

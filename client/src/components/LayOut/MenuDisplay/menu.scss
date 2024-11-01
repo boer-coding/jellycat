@@ -1,0 +1,43 @@
+$blue: #33cee5;
+
+.menuContainer {
+  height: 100vh;
+  width: 500px;
+  padding: 35px;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: -1px -1px 2px #f0efef;
+  transition: all 1s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: start;
+}
+
+.closeMenu {
+  width: 100%;
+  height: 5%;
+  text-align: end;
+  cursor: pointer;
+  margin-bottom: 50px;
+  .icon-chacha {
+    font-size: 25px;
+  }
+}
+
+.menu {
+  width: 100%;
+  height: 60%;
+
+  .menuItem {
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px;
+  }
+
+  .menuItem:hover {
+    background-color: #f2f2f2;
+
+  }
+}

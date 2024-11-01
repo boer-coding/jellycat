@@ -1,12 +1,26 @@
-const express = require('express');
+// const cors = require('cors');
+
+// // CORS configuration to allow credentials from any origin
+// const corsOptions = {
+//   origin: 'http://localhost:3000',  // Frontend origin
+//   credentials: true                 // Allow credentials (cookies)
+// };
+  
+// module.exports = cors(corsOptions);
 const cors = require('cors');
 
-const app = express();
+// CORS configuration with specific allowed origin
+// const corsOptions = {
+//   origin: 'http://localhost:3000',  // Frontend origin
+//   credentials: true                 // Allow credentials (cookies)
+// };
 
-// CORS configuration
 const corsOptions = {
   origin: ['http://localhost:3000', 'https://jellycat-frontend-d44f779084b9.herokuapp.com'],
-  credentials: true, // Allow credentials (cookies, authorization headers)
+  credentials: true,  // Allow credentials (cookies, authorization headers)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Specify allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+  exposedHeaders: ['Set-Cookie'], // Expose 'Set-Cookie' header to client
 };
 
-app.use(cors(corsOptions));
+module.exports = cors(corsOptions);

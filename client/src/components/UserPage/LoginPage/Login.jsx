@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -9,8 +9,8 @@ import {
   Alert,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { registerUser } from "../../../helpers/registerUser";
-import { loginUser } from "../../../helpers/logInUser";
+import { registerUser } from "../../../helpers/userRoutes/registerUser";
+import { loginUser } from "../../../helpers/userRoutes/logInUser";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -25,6 +25,7 @@ function Login() {
     username: "",
     password: "",
   }); // Track form data
+
   const navigate = useNavigate();
 
   const handleTogglePasswordVisibility = () => {
@@ -75,12 +76,32 @@ function Login() {
         return; // Prevent form submission if username is invalid
       }
 
-      await registerUser(formData, displayMessage, setSuccessMessage, setErrorMessage, navigate);
-
+      await registerUser(
+        formData,
+        displayMessage,
+        setSuccessMessage,
+        setErrorMessage,
+        navigate
+      );
     } else {
       // Handle Sign In
-      await loginUser(formData, displayMessage, setErrorMessage, navigate);
-      
+      const user = await loginUser(
+        formData,
+        displayMessage,
+        setErrorMessage,
+        navigate
+      );
+      // Update session state
+
+      if (user) {
+        // Set sessionStorage if user is returned
+        sessionStorage.setItem("isLoggedIn", "true");
+        sessionStorage.setItem("email", user.email);
+        sessionStorage.setItem("username", user.username);
+        sessionStorage.setItem("userId", user.userId);
+
+        navigate("/dashboard", { state: { email: user.email, username: user.username, userId: user.userId } });
+      }
     }
   };
 
