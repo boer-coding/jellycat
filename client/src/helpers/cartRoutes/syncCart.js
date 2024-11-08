@@ -1,15 +1,15 @@
 import { increment, decrement } from "../../store/modules/counterStore";
 import { syncCartWithSession } from "./syncCartWithSession";
 import { syncCartWithUser } from "./syncCartWithUser";
+import store from "../../store/index"
 
 // Function to sync cart with either user collection or session
 const syncCart = async (cartList) => {
-  const logIn = sessionStorage.getItem("isLoggedIn") === "true"; // Check login status
-  const userId = sessionStorage.getItem("userId"); // Dynamically retrieve userId
+  const { isLoggedIn, user } = store.getState().userSlice; // Access the Redux state
 
-  if (logIn && userId) {
+  if (isLoggedIn) {
     console.log("Syncing cart with user collection");
-    await syncCartWithUser(userId, cartList);
+    await syncCartWithUser(user.userId, cartList);
   } else {
     console.log("Syncing cart with session storage");
     await syncCartWithSession(cartList);

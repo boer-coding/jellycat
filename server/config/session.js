@@ -7,8 +7,8 @@ dotenv.config(); // Load environment variables from .env file
 const sessionConfig = {
   name: "jelly",
   secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
+  resave: false, //prevents the session from being saved back to the session store if it wasn’t modified during the request.
+  saveUninitialized: false, //prevents storing uninitialized sessions, which saves storage space by only saving sessions that are actually used.
   store: MongoStore.create({
     mongoUrl: process.env.MONGODB_URI,
     collectionName: "sessions",

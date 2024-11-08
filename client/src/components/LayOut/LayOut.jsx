@@ -26,9 +26,6 @@ export default function LayOut() {
   const darken = useRef(null);
   const menuRef = useRef(null);
   const displayRef = useRef(null);
-  const inputRef = useRef(null);
-
-  const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true"; // Check login status
 
   const navigate = useNavigate();
 
@@ -137,6 +134,8 @@ export default function LayOut() {
     await logoutUser();
   };
 
+  const { isLoggedIn, loadingAuth } = useSelector((state) => state.userSlice);
+
   const logIn = () => {
     // Check if the sessionStorage key 'isLoggedIn' exists and is set to 'true'
 
@@ -158,6 +157,11 @@ export default function LayOut() {
     }
     setIsInputFocused(false);
   };
+
+  // if (loadingAuth) {
+  //   // Display a loading spinner or message while loadingAuth is true
+  //   return <div>loading...</div>;
+  // }
 
   return (
     <div className="layOut">

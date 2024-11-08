@@ -1,6 +1,6 @@
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-export const loginUser = async (formData, displayMessage, setErrorMessage, navigate) => {
+export const loginUser = async (formData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/login`, {
       method: "POST",
@@ -18,21 +18,14 @@ export const loginUser = async (formData, displayMessage, setErrorMessage, navig
 
     if (response.ok) {
       const { user } = result;
-      return user; 
-      sessionStorage.setItem("isLoggedIn", "true");
-      sessionStorage.setItem("email", user.email);
-      sessionStorage.setItem("username", user.username);
-      sessionStorage.setItem("userId", user.userId);
-
-      navigate("/dashboard");
+      return user;
     } else {
-      displayMessage(setErrorMessage, result.message || "Sign in failed, please check your credentials.");
-      return null;
+      return {
+        error:
+          result.message || "Sign in failed, please check your credentials.",
+      };
     }
   } catch (error) {
-    displayMessage(setErrorMessage, "Error during sign-in, please try again later.");
-    return null;
+    return { error: "Error during sign-in, please try again later." };
   }
 };
-
-  

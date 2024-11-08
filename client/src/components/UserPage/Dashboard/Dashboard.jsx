@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from "react";
 import UserInformation from "./UserInformation";
-import UserLikes from "./UserLikes";
 import UserOrders from "./UserOrders";
 import "./dashboard.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchCartFromUser } from "../../../helpers/cartRoutes/fetchCart";
 import { setCart } from "../../../store/modules/counterStore";
-import { useLocation } from "react-router-dom";
+
+// import { useLocation } from "react-router-dom";
 const Dashboard = () => {
   // State to track the active tab
   const [activeTab, setActiveTab] = useState("info");
-  const location = useLocation();
-  const { email, username, userId } = location.state || {};  // Access user information
 
+  const { isLoggedIn, user, loadingAuth } = useSelector(
+    (state) => state.userSlice
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("dispath is running in Dash.js");
+    if (loadingAuth || !isLoggedIn || !user) return;
 
     const fetchAndSetCart = async () => {
       try {
-        let cart = await fetchCartFromUser(userId); // Fetch the cart from user collection
-
+        const cart = await fetchCartFromUser(user.userId);
         if (cart) {
-          dispatch(setCart(cart)); // Dispatch setCart only if cart is not empty
+          dispatch(setCart(cart));
         }
       } catch (error) {
         console.error("Error fetching cart:", error);
@@ -32,15 +32,13 @@ const Dashboard = () => {
     };
 
     fetchAndSetCart();
-  }, [dispatch]); // Include all relevant dependencies
+  }, [loadingAuth, isLoggedIn, user, dispatch]);
 
   // Function to render the correct component based on the active tab
   const renderTabContent = () => {
     switch (activeTab) {
       case "info":
-        return <UserInformation email={email} username = {username}/>;
-      case "likes":
-        return <UserLikes />;
+        return <UserInformation id = {user.userId} email={user.email} username={user.username} />;
       case "orders":
         return <UserOrders />;
       default:
@@ -50,7 +48,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <h1>User Dashboard</h1>
 
       {/* Tab Navigation */}
       <div className="tabs">
@@ -60,12 +57,7 @@ const Dashboard = () => {
         >
           User Information
         </button>
-        <button
-          className={activeTab === "likes" ? "active" : ""}
-          onClick={() => setActiveTab("likes")}
-        >
-          User Likes
-        </button>
+
         <button
           className={activeTab === "orders" ? "active" : ""}
           onClick={() => setActiveTab("orders")}

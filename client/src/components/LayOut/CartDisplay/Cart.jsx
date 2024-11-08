@@ -25,7 +25,7 @@ export default function Cart({ onClose }) {
   );
 
   // Handle page change
-  const handlePageChange = (event, page) => {
+  const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 

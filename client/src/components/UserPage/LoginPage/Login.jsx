@@ -12,6 +12,8 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { registerUser } from "../../../helpers/userRoutes/registerUser";
 import { loginUser } from "../../../helpers/userRoutes/logInUser";
 import { useNavigate } from "react-router-dom";
+import { setAuthState, setLoadingAuth } from "../../../store/modules/userStore";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
   const [isSignUp, setIsSignUp] = useState(false); // Track if it's sign-up or sign-in
@@ -27,6 +29,8 @@ function Login() {
   }); // Track form data
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loadingAuth = useSelector((state) => state.userSlice.loadingAuth);
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -68,42 +72,56 @@ function Login() {
     setSuccessMessage(""); // Reset success message
     setErrorMessage(""); // Reset error message
 
+    dispatch(setLoadingAuth(true)); // Start loading
+
     if (isSignUp) {
-      // Front-end validation for username
       if (!validateUsername(formData.username)) {
-        setUsernameError(true); // Show username error if empty
+        setUsernameError(true);
         setErrorMessage("Username is required.");
-        return; // Prevent form submission if username is invalid
+        dispatch(setLoadingAuth(false)); // Stop loading if there's an error
+        return;
       }
 
       await registerUser(
         formData,
         displayMessage,
         setSuccessMessage,
-        setErrorMessage,
-        navigate
+        setErrorMessage
       );
     } else {
-      // Handle Sign In
-      const user = await loginUser(
-        formData,
-        displayMessage,
-        setErrorMessage,
-        navigate
-      );
-      // Update session state
+      const loginResult = await loginUser(formData);
 
-      if (user) {
-        // Set sessionStorage if user is returned
-        sessionStorage.setItem("isLoggedIn", "true");
-        sessionStorage.setItem("email", user.email);
-        sessionStorage.setItem("username", user.username);
-        sessionStorage.setItem("userId", user.userId);
-
-        navigate("/dashboard", { state: { email: user.email, username: user.username, userId: user.userId } });
+      if (!loginResult.error) {
+        console.log("Login result:", loginResult);
+        dispatch(
+          setAuthState({
+            isLoggedIn: true,
+            user: {
+              email: loginResult.email,
+              username: loginResult.username,
+              userId: loginResult.userId,
+            },
+          })
+        );
+        dispatch(setLoadingAuth(false)); // Stop loading once authentication is complete
+        navigate("/dashboard"); // Navigate to dashboard
+        
+      } else {
+        // alert(loginResult.error);
+        console.log("Setting error message:", loginResult.error); // Log the error before setting it
+        setErrorMessage(loginResult.error); // Set error message
       }
+      
     }
   };
+  // UseEffect to watch errorMessage
+  useEffect(() => {
+    if (errorMessage) {
+      console.log("Displaying error:", errorMessage);
+      const timer = setTimeout(() => setErrorMessage(""), 3000); // Clear after delay
+      return () => clearTimeout(timer); // Cleanup on re-render
+    }
+  }, [errorMessage]);
 
   const handleSignUpClick = () => {
     setIsSignUp(true); // Switch to Sign Up mode
@@ -164,8 +182,6 @@ function Login() {
           variant="outlined"
           fullWidth
           margin="normal"
-          InputLabelProps={{ style: { color: "#333" } }}
-          InputProps={{ style: { color: "#333" } }}
           error={emailError}
           helperText={emailError ? "Invalid email format" : ""}
           sx={{
@@ -194,8 +210,6 @@ function Login() {
               variant="outlined"
               fullWidth
               margin="normal"
-              InputLabelProps={{ style: { color: "#333" } }}
-              InputProps={{ style: { color: "#333" } }}
               error={usernameError}
               helperText={usernameError ? "Username is required" : ""}
               sx={{

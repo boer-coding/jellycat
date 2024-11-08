@@ -5,8 +5,7 @@ export const registerUser = async (
   formData,
   displayMessage,
   setSuccessMessage,
-  setErrorMessage,
-  navigate
+  setErrorMessage
 ) => {
   try {
     const response = await fetch(`${API_BASE_URL}/register`, {
@@ -22,12 +21,6 @@ export const registerUser = async (
 
     if (response.ok) {
       displayMessage(setSuccessMessage, `Successfully registered!`);
-
-      // const { user } = result;
-      // sessionStorage.setItem("isLoggedIn", "true");
-      // sessionStorage.setItem("email", user.email);
-      // sessionStorage.setItem("username", user.username);
-      // navigate("/dashboard"); // Redirect to dashboard or specified URL
     } else if (response.status === 409) {
       displayMessage(
         setErrorMessage,

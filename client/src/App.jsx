@@ -12,6 +12,7 @@ import {
   fetchCartFromUser,
 } from "./helpers/cartRoutes/fetchCart.js";
 import { setCart } from "./store/modules/counterStore.js";
+import { setAuthState, setLoadingAuth } from "./store/modules/userStore.js";
 
 // Create the BannerContext
 const BannerContext = createContext();
@@ -28,10 +29,10 @@ function App() {
 
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        // Fetch banner data
         const { data, error } = await fetchBannerData();
         if (error) {
           setErrorBanner(error);
@@ -40,25 +41,47 @@ function App() {
         }
         setLoadingBanner(false);
 
-        // Check login status
+        // Check login status and update Redux store
         const authStatus = await checkLoginStatus();
+
         setIsLoggedIn(authStatus.isLoggedIn);
         setUserId(authStatus.userId);
+
+        dispatch(
+          setAuthState({
+            isLoggedIn: authStatus.isLoggedIn,
+            user: authStatus.isLoggedIn
+              ? {
+                  email: authStatus.email,
+                  username: authStatus.username,
+                  userId: authStatus.userId,
+                }
+              : null,
+          })
+        );
       } catch (error) {
         console.error("Error initializing app:", error);
+      } finally {
+        dispatch(setLoadingAuth(false)); // End loadingAuth once done
       }
     };
 
     initializeApp();
-  }, []);
+  }, [dispatch]);
 
   // Fetch the cart based on login status and userId
   useEffect(() => {
     console.log("dispath is running in app.js");
+    console.log("isLoggedIn",isLoggedIn);
+    console.log("userId",userId);
+
+
     const fetchAndSetCart = async () => {
       try {
         let cart;
         if (isLoggedIn && userId) {
+          console.log("fetchCartFromUser is running in app.js");
+
           cart = await fetchCartFromUser(userId); // Fetch the cart from user collection
         } else {
           cart = await fetchCartFromSession(); // Fetch the cart from session

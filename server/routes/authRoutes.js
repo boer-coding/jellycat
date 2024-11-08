@@ -43,7 +43,6 @@ router.post("/register", async (req, res) => {
 // Login Route
 router.post("/login", (req, res, next) => {
   // Validate input
-
   if (!req.body.email || !req.body.password) {
     return res
       .status(400)
@@ -90,6 +89,7 @@ router.post("/login", (req, res, next) => {
 
       // Update session cart
       req.session.cart = mergedCart;
+      console.log(req.session)
 
       // Send the user data (email, username) to the frontend directly in the response
       return res.status(200).json({
@@ -117,11 +117,7 @@ router.get("/auth/status", (req, res) => {
   }
 });
 
-router.get("/dashboard", isAuthenticated, (req, res) => {
-  res
-    .status(200)
-    .json({ message: `Welcome to your dashboard, ${req.user.username}!` });
-});
+
 // Logout route
 router.post("/logout", (req, res) => {
   req.logout((err) => {
@@ -142,6 +138,58 @@ router.post("/logout", (req, res) => {
       return res.status(200).json({ message: "Logout successful!" });
     });
   });
+});
+
+router.put("/updateUser", async (req, res) => {
+  const { email, username } = req.body;
+  try {
+    // Update the user's username based on email
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      { username },
+      { new: true } // Returns the updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({ message: "Username updated successfully" });
+  } catch (error) {
+    console.error("Error updating username:", error);
+    return res.status(500).json({ message: "Error updating username" });
+  }
+});
+
+router.delete("/deleteUser", async (req, res) => {
+  const { id } = req.body;
+  try {
+    await User.findByIdAndDelete(id); // Delete the user by their ID
+    req.logout((err) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ message: "Logout failed. Please try again." });
+      }
+
+      // Destroy session and clear cookie
+      req.session.destroy((err) => {
+        if (err) {
+          return res
+            .status(500)
+            .json({ message: "Session destruction failed." });
+        }
+
+        // Clear session cookie
+        res.clearCookie("connect.sid"); // Adjust the cookie name if different
+        return res
+          .status(200)
+          .json({ message: "Account deleted and logged out successfully." });
+      });
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting account" });
+  }
 });
 
 module.exports = router;

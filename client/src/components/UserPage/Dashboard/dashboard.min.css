@@ -1,0 +1,1 @@
+.dashboard{width:80%;margin:30px auto}.tabs{display:flex;justify-content:space-around;margin-bottom:20px}.tabs button{padding:10px 20px;border:none;background-color:#f0f0f0;cursor:pointer;font-size:16px}.tabs button.active{background-color:#33cee5;color:white}.tab-content{width:80%;padding:20px;margin:0 auto;border:1px solid #e0e0e0;background-color:#f9f9f9}

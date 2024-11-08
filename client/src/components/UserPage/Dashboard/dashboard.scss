@@ -1,3 +1,5 @@
+$blue: #33cee5;
+
 .dashboard {
   width: 80%;
   margin: 30px auto;
@@ -18,12 +20,12 @@
 }
 
 .tabs button.active {
-  background-color: #33cee5;
+  background-color: $blue;
   color: white;
 }
 
 .tab-content {
-  width: 80%;
+    width: 80%;
   padding: 20px;
   margin: 0 auto;
   border: 1px solid #e0e0e0;

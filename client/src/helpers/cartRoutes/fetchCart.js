@@ -28,6 +28,7 @@ export const fetchCartFromSession = async () => {
 
 // Fetch Cart from User Collection
 export const fetchCartFromUser = async (userId) => {
+
   try {
     const response = await fetch(`${API_BASE_URL}/fetchUserCart`, {
       method: 'POST',  // Use POST to send data in the request body
@@ -38,6 +39,7 @@ export const fetchCartFromUser = async (userId) => {
     });
 
     const result = await response.json();
+    console.log(result)
 
     if (response.ok && result.cart && result.cart.length > 0) {
       return result.cart;  // Return the cart if it's not empty

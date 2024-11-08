@@ -8,10 +8,7 @@ export const logoutUser = async () => {
         credentials: "include", // Ensure cookies are sent
       });
   
-      if (response.ok) {
-        // Clear sessionStorage
-        sessionStorage.removeItem("isLoggedIn");
-  
+      if (response.ok) {  
         // Optionally redirect to the login page or home page
         window.location.href = "/login";
       }
