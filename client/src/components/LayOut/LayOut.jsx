@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router";
 import { useBanner } from "../../helpers/MsgContext.js";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
 import Cart from "./CartDisplay/Cart.jsx";
 import Menu from "./MenuDisplay/Menu.jsx";
 import SearchDisplay from "./SearchDisplay/SearchDisplay.jsx";
@@ -158,7 +156,6 @@ export default function LayOut() {
     }
     setIsInputFocused(false);
   };
-
 
   return (
     <div className="layOut">

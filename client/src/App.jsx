@@ -57,6 +57,7 @@ function App() {
               : null,
           })
         );
+
       } catch (error) {
         console.error("Error initializing app:", error);
       } 
@@ -68,8 +69,6 @@ function App() {
   
   useEffect(() => {
     console.log("dispath is running in app.js");
-    // console.log("isLoggedIn", isLoggedIn);
-    // console.log("userId", userId);
 
     const fetchAndSetCart = async () => {
       try {

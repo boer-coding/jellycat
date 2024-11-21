@@ -12,7 +12,6 @@ router.post("/register", async (req, res) => {
 
     // Register the user using the User model's 'register' method
     const registeredUser = await User.register(user, password);
-    // console.log("Registered User:", registeredUser);
 
     // Respond with user data and a success message
     return res.status(200).json({

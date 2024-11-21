@@ -13,7 +13,7 @@ import { registerUser } from "../../../helpers/userRoutes/registerUser";
 import { loginUser } from "../../../helpers/userRoutes/logInUser";
 import { useNavigate } from "react-router-dom";
 import { setAuthState } from "../../../store/modules/userStore";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
   const [isSignUp, setIsSignUp] = useState(false); // Track if it's sign-up or sign-in
@@ -22,14 +22,24 @@ function Login() {
   const [usernameError, setUsernameError] = useState(false); // Track username validation error
   const [successMessage, setSuccessMessage] = useState(""); // Track the success message
   const [errorMessage, setErrorMessage] = useState(""); // Track the error message
+  const [logStatus, setLogStatus] = useState(false)
   const [formData, setFormData] = useState({
     email: "",
     username: "",
     password: "",
   }); // Track form data
-
+  const { isLoggedIn } = useSelector(
+    (state) => state.userSlice
+  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    if (isLoggedIn ) {
+      navigate("/dashboard");
+      return;
+    }
+  },[isLoggedIn])
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -100,7 +110,8 @@ function Login() {
       const loginResult = await loginUser(formData);
 
       if (!loginResult.error) {
-        console.log("Login result:", loginResult);
+        sessionStorage.setItem("sessionLogIn", true)
+        setLogStatus(true)
         dispatch(
           setAuthState({
             isLoggedIn: true,
