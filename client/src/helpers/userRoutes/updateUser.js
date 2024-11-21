@@ -2,7 +2,7 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const updateUser = async (newUsername, email) => {
   try {
-    const response = await fetch("http://localhost:8080/updateUser", {
+    const response = await fetch(`${API_BASE_URL}/updateUser`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

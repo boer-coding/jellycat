@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./userInformation.css";
 import updateUser from "../../../helpers/userRoutes/updateUser";
 import deleteUser from "../../../helpers/userRoutes/deleteUser";
+import { useDispatch } from "react-redux";
+import { setUsername } from "../../../store/modules/userStore";
 
 const UserInformation = (props) => {
   const { id ,email, username } = props;
@@ -10,6 +12,7 @@ const UserInformation = (props) => {
   const [saveState, setSaveState] = useState(false);
   const [loading, setLoading] = useState(false); // Optional loading state for feedback
   const [newUsername, setNewUsername] = useState(username); // State for new username
+  const dispatch = useDispatch();
 
   const handleEdit = () => {
     setEditState(false);
@@ -20,9 +23,11 @@ const UserInformation = (props) => {
     setLoading(true);
     try {
       await updateUser(newUsername, email);
+      
       console.log("Username updated successfully");
       setEditState(true);
       setSaveState(false);
+      dispatch(setUsername(newUsername))
     } catch (error) {
       console.error("Error updating username:", error);
     } finally {
