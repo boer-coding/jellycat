@@ -1,15 +1,21 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart } from "../../../store/modules/counterStore";
 import CartItem from "./CartItem/CartItem";
 import Pagination from "@mui/material/Pagination";
+import { emptyCart } from "../../../helpers/cartRoutes/syncCart";
 import "./cart.css";
 import "../../../font/iconfont.css";
 
 export default function Cart({ onClose }) {
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // Set the number of items to display per page
+  const dispatch = useDispatch();
 
+  const handleClearCart = ()=>{
+    dispatch(emptyCart())
+  }
+  
 
   const { cartList, totalCount, totalCost } = useSelector(
     (state) => state.counterSlice
@@ -25,16 +31,27 @@ export default function Cart({ onClose }) {
   );
 
   // Handle page change
-  const handlePageChange = (page) => {
+  const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
+  useEffect(() => {
+    // Check if the current page is greater than the total pages, reset to 1 if so
+    if (currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [cartList, currentPage, totalPages]);
 
   return (
     <div className="cart">
       <div className="cartContainer">
         <div className="cartTitle">
-          <div className="myBag">My Bag</div>
+          <div className="myBag" >My Bag</div>
           <div className="bagCount">{totalCount} items</div>
+          {cartList.length > 0 && (
+            <div className="clearCart" onClick={handleClearCart}>
+              <span className="iconfont icon-trash"></span>
+            </div>
+          )}
           <div className="closeBag" onClick={onClose}>
             <span className="iconfont icon-chacha"></span>
           </div>

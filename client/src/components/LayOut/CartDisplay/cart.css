@@ -24,7 +24,7 @@
 }
 
 .cartContainer .cartTitle .myBag {
-  width: 15%;
+  width: 20%;
   font-size: 20px;
   display: flex;
   align-items: flex-end;
@@ -42,6 +42,17 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  cursor: pointer;
+}
+
+.cartContainer .cartTitle .clearCart {
+  width: 15%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cartContainer .cartTitle .icon-trash {
+  font-size: 20px;
   cursor: pointer;
 }
 

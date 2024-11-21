@@ -5,20 +5,26 @@ import "./dashboard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartFromUser } from "../../../helpers/cartRoutes/fetchCart";
 import { setCart } from "../../../store/modules/counterStore";
+import { useNavigate } from "react-router-dom";
 
 // import { useLocation } from "react-router-dom";
 const Dashboard = () => {
   // State to track the active tab
   const [activeTab, setActiveTab] = useState("info");
+  const navigate = useNavigate();
 
-  const { isLoggedIn, user, loadingAuth } = useSelector(
+  const { isLoggedIn, user } = useSelector(
     (state) => state.userSlice
   );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (loadingAuth || !isLoggedIn || !user) return;
+
+    if (!isLoggedIn || !user) {
+      navigate("/login");
+      return;
+    }
 
     const fetchAndSetCart = async () => {
       try {
@@ -32,13 +38,23 @@ const Dashboard = () => {
     };
 
     fetchAndSetCart();
-  }, [loadingAuth, isLoggedIn, user, dispatch]);
+  }, [isLoggedIn, user, dispatch]);
 
   // Function to render the correct component based on the active tab
   const renderTabContent = () => {
+    if (!user) {
+      console.error("User is not defined, cannot render tab content.");
+      return; // Redirect to login if user is not logged in
+    }
     switch (activeTab) {
       case "info":
-        return <UserInformation id = {user.userId} email={user.email} username={user.username} />;
+        return (
+          <UserInformation
+            id={user.userId}
+            email={user.email}
+            username={user.username}
+          />
+        );
       case "orders":
         return <UserOrders />;
       default:
@@ -48,7 +64,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-
       {/* Tab Navigation */}
       <div className="tabs">
         <button

@@ -3,7 +3,6 @@ const router = express.Router(); // Initialize the router
 const User = require("../models/user");
 const passport = require("passport");
 
-const { isAuthenticated } = require("../middleware/authMiddleware");
 
 // Registration Route
 router.post("/register", async (req, res) => {
@@ -88,8 +87,7 @@ router.post("/login", (req, res, next) => {
       user.save();
 
       // Update session cart
-      req.session.cart = mergedCart;
-      console.log(req.session)
+      delete req.session.cart;
 
       // Send the user data (email, username) to the frontend directly in the response
       return res.status(200).json({

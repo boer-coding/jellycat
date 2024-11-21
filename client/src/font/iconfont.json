@@ -48,6 +48,13 @@
       "unicode_decimal": 58894
     },
     {
+      "icon_id": "1327504",
+      "name": "trash",
+      "font_class": "trash",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
       "icon_id": "1788676",
       "name": "用户",
       "font_class": "yonghu",

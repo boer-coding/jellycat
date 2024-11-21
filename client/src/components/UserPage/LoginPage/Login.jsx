@@ -12,8 +12,8 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { registerUser } from "../../../helpers/userRoutes/registerUser";
 import { loginUser } from "../../../helpers/userRoutes/logInUser";
 import { useNavigate } from "react-router-dom";
-import { setAuthState, setLoadingAuth } from "../../../store/modules/userStore";
-import { useDispatch, useSelector } from "react-redux";
+import { setAuthState } from "../../../store/modules/userStore";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const [isSignUp, setIsSignUp] = useState(false); // Track if it's sign-up or sign-in
@@ -30,7 +30,6 @@ function Login() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loadingAuth = useSelector((state) => state.userSlice.loadingAuth);
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -72,13 +71,22 @@ function Login() {
     setSuccessMessage(""); // Reset success message
     setErrorMessage(""); // Reset error message
 
-    dispatch(setLoadingAuth(true)); // Start loading
-
     if (isSignUp) {
-      if (!validateUsername(formData.username)) {
+      if (
+        !validateUsername(formData.username) &&
+        !validateEmail(formData.email)
+      ) {
+        setUsernameError(true);
+        setEmailError(true);
+        setErrorMessage("Username and email is required.");
+        return;
+      } else if (!validateUsername(formData.username)) {
         setUsernameError(true);
         setErrorMessage("Username is required.");
-        dispatch(setLoadingAuth(false)); // Stop loading if there's an error
+        return;
+      } else if (!validateEmail(formData.email)) {
+        setEmailError(true);
+        setErrorMessage("Email is required.");
         return;
       }
 
@@ -103,15 +111,11 @@ function Login() {
             },
           })
         );
-        dispatch(setLoadingAuth(false)); // Stop loading once authentication is complete
         navigate("/dashboard"); // Navigate to dashboard
-        
       } else {
-        // alert(loginResult.error);
         console.log("Setting error message:", loginResult.error); // Log the error before setting it
         setErrorMessage(loginResult.error); // Set error message
       }
-      
     }
   };
   // UseEffect to watch errorMessage

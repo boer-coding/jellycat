@@ -2,7 +2,8 @@ import "./home.css";
 import GridBox from "../Shared/GridBox/GridBox";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useBanner } from "../../App.jsx";
+// import { useBanner } from "../../App.jsx";
+import {useBanner} from "../../helpers/MsgContext.js"
 
 
 
@@ -10,13 +11,15 @@ function Home() {
   const { bannerData } = useBanner(); // Access banner data from context
   const navigate = useNavigate();
 
-  const imgList = useRef(null);
-  const circleList = useRef(null);
+  const imgList = useRef(null); // Refers to the DOM element containing all the images for the carousel.
+  const circleList = useRef(null); // Refers to the DOM element containing the navigation dots.
   const [currentIndex, setCurrentIndex] = useState(0);
   const [appendFirst, setAppendFirst] = useState(false);
   const totalImages = 4; // Assuming you have 4 images
-  const transitionDuration = 500; // Duration of the slide transition
+  const transitionDuration = 800; // Duration of the slide transition
 
+
+    // Creates a looping effect by appending a cloned copy of the first image to the end of the carousel.
   useEffect(() => {
     if (imgList.current && !appendFirst) {
       const firstChild = imgList.current.firstChild;
@@ -29,7 +32,7 @@ function Home() {
       }
     }
   }, [appendFirst]);
-  // Move right function
+  // If it reaches the first image, it resets to the cloned last image seamlessly.
   const picLeft = () => {
     if (imgList.current) {
       imgList.current.style.transition = `left ${transitionDuration}ms ease-in-out`;
@@ -37,16 +40,14 @@ function Home() {
 
       setCurrentIndex(currentIndex - 1);
 
-      // Handle resetting the carousel when reaching the cloned last image
+      // Handle when reaching the first image
       if (currentIndex === 0) {
-        imgList.current.style.left = `-${totalImages}00%`;
-        imgList.current.style.transition = "none";
+        imgList.current.style.left = `-${totalImages}00%`;// Move to the cloned image
+        imgList.current.style.transition = "none"; // Disable transition temporarily
 
         setTimeout(() => {
-          // Disable the transition to avoid visible jumping
-          setCurrentIndex(totalImages - 1);
-          imgList.current.style.left = `-${totalImages - 1}00%`;
-
+          setCurrentIndex(totalImages - 1); // Reset index to the last image
+          imgList.current.style.left = `-${totalImages - 1}00%`;  // Align with the last image
           imgList.current.style.transition = `left ${transitionDuration}ms ease-in-out`;
         }, 0);
       } else {
@@ -93,6 +94,7 @@ function Home() {
       }
     }
   }, [currentIndex]);
+
 
   const goToImage = (index) => {
     setCurrentIndex(index);

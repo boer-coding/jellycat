@@ -1,7 +1,11 @@
-import { increment, decrement } from "../../store/modules/counterStore";
+import {
+  increment,
+  decrement,
+  clearCart,
+} from "../../store/modules/counterStore";
 import { syncCartWithSession } from "./syncCartWithSession";
 import { syncCartWithUser } from "./syncCartWithUser";
-import store from "../../store/index"
+import store from "../../store/index";
 
 // Function to sync cart with either user collection or session
 const syncCart = async (cartList) => {
@@ -15,8 +19,6 @@ const syncCart = async (cartList) => {
     await syncCartWithSession(cartList);
   }
 };
-
-
 
 // Redux action to add an item to the cart and sync it
 export const addToCart = (item) => async (dispatch, getState) => {
@@ -39,5 +41,11 @@ export const removeCart = (item) => async (dispatch, getState) => {
   const { cartList } = getState().counterSlice;
 
   // Sync the cart based on login status
+  await syncCart(cartList);
+};
+
+export const emptyCart = () => async (dispatch, getState) => {
+  dispatch(clearCart());
+  const { cartList } = getState().counterSlice;
   await syncCart(cartList);
 };

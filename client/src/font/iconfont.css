@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1730346757032') format('truetype');
+  src: url('iconfont.ttf?t=1732062782916') format('truetype');
 }
 
 .iconfont {
@@ -33,6 +33,10 @@
 
 .icon-chacha:before {
   content: "\e60e";
+}
+
+.icon-trash:before {
+  content: "\e616";
 }
 
 .icon-yonghu:before {

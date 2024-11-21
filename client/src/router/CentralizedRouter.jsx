@@ -41,7 +41,6 @@ const routerList = [
         path: "/bestsellers",
         element: (
           <BestNew
-
             header="Best Sellers"
             text="As chosen by you, these are the all-time favorite friends for all occasions."
           />
@@ -49,17 +48,11 @@ const routerList = [
       },
       {
         path: "/login",
-        element: (
-          <Login
-          />
-        ),
+        element: <Login />,
       },
       {
         path: "/dashboard",
-        element: (
-          <Dashboard
-          />
-        ),
+        element: <Dashboard />,
       },
     ],
   },

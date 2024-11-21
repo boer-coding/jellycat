@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router";
-import { useBanner } from "../../App.jsx";
+import { useBanner } from "../../helpers/MsgContext.js";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import Cart from "./CartDisplay/Cart.jsx";
 import Menu from "./MenuDisplay/Menu.jsx";
 import SearchDisplay from "./SearchDisplay/SearchDisplay.jsx";
@@ -79,7 +81,6 @@ export default function LayOut() {
     if (menuRef.current) {
       menuRef.current.style.transform = "translateX(-100%)"; // Slide the cart out of view
       darken.current.style.visibility = "hidden";
-
       darken.current.style.opacity = "0";
     }
     setMenutate(false);
@@ -134,7 +135,7 @@ export default function LayOut() {
     await logoutUser();
   };
 
-  const { isLoggedIn, loadingAuth } = useSelector((state) => state.userSlice);
+  const { isLoggedIn } = useSelector((state) => state.userSlice);
 
   const logIn = () => {
     // Check if the sessionStorage key 'isLoggedIn' exists and is set to 'true'
@@ -158,10 +159,6 @@ export default function LayOut() {
     setIsInputFocused(false);
   };
 
-  // if (loadingAuth) {
-  //   // Display a loading spinner or message while loadingAuth is true
-  //   return <div>loading...</div>;
-  // }
 
   return (
     <div className="layOut">

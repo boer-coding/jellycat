@@ -1,7 +1,7 @@
 import "./App.css";
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-
+import {BannerProvider} from './helpers/MsgContext.js'
 import { BrowserRouter } from "react-router-dom";
 import CentralizedRouter from "./router/CentralizedRouter";
 import ScrollToTop from "./components/Shared/ScrollTop/ScrollTop.jsx";
@@ -12,13 +12,10 @@ import {
   fetchCartFromUser,
 } from "./helpers/cartRoutes/fetchCart.js";
 import { setCart } from "./store/modules/counterStore.js";
-import { setAuthState, setLoadingAuth } from "./store/modules/userStore.js";
+import { setAuthState } from "./store/modules/userStore.js";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
-// Create the BannerContext
-const BannerContext = createContext();
-
-// Custom hook to consume the context
-export const useBanner = () => useContext(BannerContext);
 
 function App() {
   const [bannerData, setBannerData] = useState(null);
@@ -29,52 +26,50 @@ function App() {
 
   const dispatch = useDispatch();
 
-
+  
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        const { data, error } = await fetchBannerData();
-        if (error) {
-          setErrorBanner(error);
+        const [bannerResponse, authResponse] = await Promise.all([
+          fetchBannerData(),
+          checkLoginStatus(),
+        ]);
+  
+        if (bannerResponse.error) {
+          setErrorBanner(bannerResponse.error);
         } else {
-          setBannerData(data);
+          setBannerData(bannerResponse.data);
         }
         setLoadingBanner(false);
-
-        // Check login status and update Redux store
-        const authStatus = await checkLoginStatus();
-
-        setIsLoggedIn(authStatus.isLoggedIn);
-        setUserId(authStatus.userId);
-
+  
+        setIsLoggedIn(authResponse.isLoggedIn);
+        setUserId(authResponse.userId);
+  
         dispatch(
           setAuthState({
-            isLoggedIn: authStatus.isLoggedIn,
-            user: authStatus.isLoggedIn
+            isLoggedIn: authResponse.isLoggedIn,
+            user: authResponse.isLoggedIn
               ? {
-                  email: authStatus.email,
-                  username: authStatus.username,
-                  userId: authStatus.userId,
+                  email: authResponse.email,
+                  username: authResponse.username,
+                  userId: authResponse.userId,
                 }
               : null,
           })
         );
       } catch (error) {
         console.error("Error initializing app:", error);
-      } finally {
-        dispatch(setLoadingAuth(false)); // End loadingAuth once done
-      }
-    };
+      } 
 
+    };
+  
     initializeApp();
   }, [dispatch]);
-
-  // Fetch the cart based on login status and userId
+  
   useEffect(() => {
     console.log("dispath is running in app.js");
-    console.log("isLoggedIn",isLoggedIn);
-    console.log("userId",userId);
-
+    // console.log("isLoggedIn", isLoggedIn);
+    // console.log("userId", userId);
 
     const fetchAndSetCart = async () => {
       try {
@@ -103,12 +98,21 @@ function App() {
       <BrowserRouter>
         <ScrollToTop>
           {!loadingBanner ? (
-            <BannerContext.Provider value={{ bannerData }}>
+            <BannerProvider value={{ bannerData }}>
               <CentralizedRouter />{" "}
               {/* Show the CentralizedRouter when loading is done */}
-            </BannerContext.Provider>
+            </BannerProvider>
           ) : (
-            <div></div> // You can replace this with a spinner or a loading component
+            <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center", // Centers horizontally
+          alignItems: "center", // Centers vertically
+          height: "100vh", // Ensures the spinner is centered in the full viewport height
+        }}
+      >
+        <CircularProgress size="3rem" />{" "}
+      </Box>
           )}
         </ScrollToTop>
       </BrowserRouter>

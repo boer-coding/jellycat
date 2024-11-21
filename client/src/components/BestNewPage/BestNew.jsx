@@ -1,6 +1,6 @@
 import Banner from "./BestNewBanner/BestNewBanner.jsx";
 import GridBox from "../Shared/GridBox/GridBox.jsx";
-import { useBanner } from "../../App.jsx";
+import { useBanner } from "../../helpers/MsgContext.js";
 
 function BestNew(props) {
   const { header, text } = props;
